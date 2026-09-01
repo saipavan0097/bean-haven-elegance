@@ -12,7 +12,7 @@ export function MenuSection() {
           eyebrow="The Menu"
           title="Crafted cup by cup,"
           accent="never in batches"
-          description="Six house classics pulled on our brass двух-group machine, each dialled in daily against the morning's roast."
+          description="Six house classics pulled on our brass two-group machine, each dialled in daily against the morning's roast."
         />
 
         <ul className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
