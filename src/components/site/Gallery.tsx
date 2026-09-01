@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 export function Gallery() {
   const [index, setIndex] = useState<number | null>(null);
-  const open = index !== null;
+  const current = index === null ? null : gallery[index];
 
   const close = useCallback(() => setIndex(null), []);
   const step = useCallback(
@@ -16,7 +16,7 @@ export function Gallery() {
   );
 
   useEffect(() => {
-    if (!open) return;
+    if (!current) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") close();
       if (e.key === "ArrowRight") step(1);
@@ -28,7 +28,7 @@ export function Gallery() {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [open, close, step]);
+  }, [current, close, step]);
 
   return (
     <section id="gallery" className="py-24 sm:py-32">
@@ -72,7 +72,7 @@ export function Gallery() {
         </ul>
       </div>
 
-      {open ? (
+      {current ? (
         <div
           role="dialog"
           aria-modal="true"
@@ -101,14 +101,14 @@ export function Gallery() {
           </button>
           <figure onClick={(e) => e.stopPropagation()} className="max-w-4xl">
             <img
-              src={gallery[index].src}
-              alt={gallery[index].alt}
+              src={current.src}
+              alt={current.alt}
               width={1000}
               height={1000}
               className="max-h-[78vh] w-full rounded-3xl object-contain"
             />
             <figcaption className="mt-4 text-center text-sm text-cream/70">
-              {gallery[index].alt}
+              {current.alt}
             </figcaption>
           </figure>
           <button
