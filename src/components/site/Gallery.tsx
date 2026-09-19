@@ -3,7 +3,6 @@ import { X, ChevronLeft, ChevronRight, Expand } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { gallery } from "./data";
-import { cn } from "@/lib/utils";
 
 export function Gallery() {
   const [index, setIndex] = useState<number | null>(null);
@@ -42,12 +41,7 @@ export function Gallery() {
 
         <ul className="mt-16 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
           {gallery.map((img, i) => (
-            <Reveal
-              as="li"
-              key={img.alt}
-              delay={i * 70}
-              className={cn(i === 0 || i === 5 ? "lg:col-span-2 lg:row-span-1" : "")}
-            >
+            <Reveal as="li" key={img.alt} delay={i * 70}>
               <button
                 type="button"
                 onClick={() => setIndex(i)}
