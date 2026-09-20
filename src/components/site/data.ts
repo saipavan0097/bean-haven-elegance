@@ -14,6 +14,10 @@ import p1 from "@/assets/person-1.jpg";
 import p2 from "@/assets/person-2.jpg";
 import p3 from "@/assets/person-3.jpg";
 import p4 from "@/assets/person-4.jpg";
+import menuDesserts from "@/assets/menu-desserts.jpg";
+import menuBakery from "@/assets/menu-bakery.jpg";
+import menuSnacks from "@/assets/menu-snacks.jpg";
+import menuTea from "@/assets/menu-tea.jpg";
 
 export const navLinks = [
   { label: "Home", href: "#home" },
@@ -81,6 +85,66 @@ export const menu = [
     description:
       "Coarse-ground Ethiopian beans steeped for eighteen hours over ice for a smooth, low-acid pour.",
   },
+];
+
+export const menuCategories = [
+  { id: "signature", label: "Signature Coffee", icon: "coffee" },
+  { id: "espresso", label: "Espresso Bar", icon: "bean" },
+  { id: "milk", label: "Milk Coffee", icon: "milk" },
+  { id: "cold", label: "Cold Coffee", icon: "snowflake" },
+  { id: "desserts", label: "Desserts", icon: "cake" },
+  { id: "bakery", label: "Bakery", icon: "croissant" },
+  { id: "snacks", label: "Snacks", icon: "sandwich" },
+  { id: "tea", label: "Tea", icon: "leaf" },
+] as const;
+
+export type MenuCategory = (typeof menuCategories)[number]["id"];
+
+export type MenuProduct = {
+  name: string;
+  category: MenuCategory;
+  description: string;
+  price: string;
+  image: string;
+  popular?: boolean;
+  vegetarian?: boolean;
+  spice?: 1 | 2 | 3;
+};
+
+export const menuProducts: MenuProduct[] = [
+  { name: "Bean Haven Signature", category: "signature", description: "House espresso, jaggery caramel and velvet cream crowned with cocoa.", price: "₹295", image: mocha, popular: true, vegetarian: true },
+  { name: "Classic Cappuccino", category: "signature", description: "A precise balance of rich espresso, steamed milk and satin microfoam.", price: "₹245", image: cappuccino, popular: true, vegetarian: true },
+  { name: "Caramel Latte", category: "signature", description: "Double ristretto with burnt caramel and silken whole milk.", price: "₹285", image: latte, popular: true, vegetarian: true },
+  { name: "Vanilla Latte", category: "signature", description: "Madagascar vanilla, house espresso and softly textured milk.", price: "₹275", image: latte, vegetarian: true },
+  { name: "Hazelnut Latte", category: "signature", description: "Toasted hazelnut praline folded into a fragrant double shot.", price: "₹285", image: cappuccino, vegetarian: true },
+  { name: "Espresso", category: "espresso", description: "A concentrated pull with dark cocoa, citrus and caramel depth.", price: "₹165", image: espresso, vegetarian: true },
+  { name: "Double Espresso", category: "espresso", description: "Two full-bodied shots for a longer, more resonant finish.", price: "₹205", image: espresso, vegetarian: true },
+  { name: "Americano", category: "espresso", description: "Double espresso opened with soft filtered water.", price: "₹195", image: americano, vegetarian: true },
+  { name: "Macchiato", category: "espresso", description: "Espresso marked with a spoon of lustrous milk foam.", price: "₹215", image: espresso, vegetarian: true },
+  { name: "Flat White", category: "milk", description: "Velvety microfoam poured over a deep double ristretto.", price: "₹245", image: latte, popular: true, vegetarian: true },
+  { name: "Café Mocha", category: "milk", description: "Single-origin cocoa, espresso and steamed milk with chocolate curls.", price: "₹295", image: mocha, vegetarian: true },
+  { name: "Spanish Latte", category: "milk", description: "A luscious condensed-milk latte with cinnamon warmth.", price: "₹285", image: cappuccino, vegetarian: true },
+  { name: "Cold Brew", category: "cold", description: "Eighteen-hour steeped Ethiopian coffee served over clear ice.", price: "₹265", image: coldbrew, popular: true, vegetarian: true },
+  { name: "Iced Latte", category: "cold", description: "Chilled espresso, fresh milk and hand-cut ice.", price: "₹255", image: coldbrew, vegetarian: true },
+  { name: "Mocha Frappe", category: "cold", description: "Whipped chocolate espresso with cream and dark cocoa.", price: "₹325", image: mocha, vegetarian: true },
+  { name: "Vanilla Cold Coffee", category: "cold", description: "Creamy cold coffee perfumed with real vanilla bean.", price: "₹295", image: coldbrew, vegetarian: true },
+  { name: "Tiramisu", category: "desserts", description: "Espresso-soaked sponge layered with mascarpone and cocoa.", price: "₹345", image: menuDesserts, popular: true, vegetarian: true },
+  { name: "Chocolate Brownie", category: "desserts", description: "Dark chocolate brownie with a molten centre and sea salt.", price: "₹285", image: menuDesserts, popular: true, vegetarian: true },
+  { name: "Cheesecake", category: "desserts", description: "Baked vanilla cheesecake with a seasonal berry compote.", price: "₹325", image: menuDesserts, vegetarian: true },
+  { name: "Chocolate Lava Cake", category: "desserts", description: "Warm cacao cake with a flowing ganache heart.", price: "₹355", image: menuDesserts, vegetarian: true },
+  { name: "Butter Croissant", category: "bakery", description: "A flaky, cultured-butter croissant baked throughout the morning.", price: "₹195", image: menuBakery, popular: true, vegetarian: true },
+  { name: "Garlic Bread", category: "bakery", description: "Sourdough toasted with confit garlic and garden herbs.", price: "₹215", image: menuBakery, vegetarian: true },
+  { name: "Blueberry Muffin", category: "bakery", description: "Tender vanilla crumb filled with macerated blueberries.", price: "₹185", image: menuBakery, vegetarian: true },
+  { name: "Chocolate Muffin", category: "bakery", description: "Deep cocoa muffin studded with Belgian chocolate.", price: "₹195", image: menuBakery, vegetarian: true },
+  { name: "Veg Sandwich", category: "snacks", description: "Garden vegetables, cheddar and mustard on toasted sourdough.", price: "₹265", image: menuSnacks, vegetarian: true, spice: 1 },
+  { name: "Grilled Paneer Sandwich", category: "snacks", description: "Tandoori paneer, mint chutney and pickled onion in sourdough.", price: "₹325", image: menuSnacks, popular: true, vegetarian: true, spice: 2 },
+  { name: "French Fries", category: "snacks", description: "Crisp skin-on fries with smoked salt and house aioli.", price: "₹225", image: menuSnacks, vegetarian: true, spice: 1 },
+  { name: "Garlic Toast", category: "snacks", description: "Charred sourdough with roasted garlic butter and parsley.", price: "₹195", image: menuSnacks, vegetarian: true, spice: 1 },
+  { name: "Veg Wrap", category: "snacks", description: "Grilled vegetables, hummus and crisp leaves in a warm flatbread.", price: "₹295", image: menuSnacks, vegetarian: true, spice: 2 },
+  { name: "Masala Tea", category: "tea", description: "Assam tea simmered with ginger and Bean Haven's whole-spice blend.", price: "₹165", image: menuTea, popular: true, vegetarian: true },
+  { name: "Green Tea", category: "tea", description: "Delicate whole leaves with a clean, quietly floral finish.", price: "₹155", image: menuTea, vegetarian: true },
+  { name: "Lemon Tea", category: "tea", description: "Bright black tea with fresh lemon and wildflower honey.", price: "₹165", image: menuTea, vegetarian: true },
+  { name: "Earl Grey", category: "tea", description: "Fine black tea scented with Calabrian bergamot.", price: "₹175", image: menuTea, vegetarian: true },
 ];
 
 export const offers = [
