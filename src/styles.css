@@ -46,6 +46,11 @@
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
   --color-menu-noir: var(--menu-noir);
+  --color-menu-paper: var(--menu-paper);
+  --color-menu-surface: var(--menu-surface);
+  --color-menu-wash: var(--menu-wash);
+  --color-menu-ink: var(--menu-ink);
+  --color-menu-muted: var(--menu-muted);
   --color-menu-panel: var(--menu-panel);
   --color-menu-walnut: var(--menu-walnut);
   --color-menu-cream: var(--menu-cream);
@@ -62,6 +67,8 @@
   --shadow-gold: 0 20px 60px -25px oklch(0.78 0.13 82 / 0.45);
   --shadow-menu-card: 0 18px 50px -28px oklch(0.04 0.01 45 / 0.8);
   --shadow-menu-luxe: 0 35px 90px -35px oklch(0.03 0.01 45 / 0.9);
+  --shadow-menu-paper: 0 18px 45px -30px oklch(0.24 0.04 50 / 0.32);
+  --shadow-menu-hover: 0 28px 65px -30px oklch(0.24 0.04 50 / 0.45);
 
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-float: float 7s ease-in-out infinite;
@@ -80,6 +87,11 @@
   --gold-soft: oklch(0.87 0.08 88);
 
   --menu-noir: oklch(0.12 0.012 50);
+  --menu-paper: oklch(0.969 0.009 78);
+  --menu-surface: oklch(0.992 0.005 78 / 0.88);
+  --menu-wash: oklch(0.925 0.018 76);
+  --menu-ink: oklch(0.24 0.035 48);
+  --menu-muted: oklch(0.46 0.025 55);
   --menu-panel: oklch(0.145 0.014 50);
   --menu-walnut: oklch(0.22 0.035 48);
   --menu-cream: oklch(0.94 0.025 82);
@@ -87,6 +99,8 @@
   --menu-glass: oklch(0.19 0.018 48 / 0.72);
   --gradient-menu-card: linear-gradient(to top, oklch(0.08 0.01 45 / 0.98), oklch(0.08 0.01 45 / 0.1) 70%);
   --gradient-menu-image: linear-gradient(to top, oklch(0.08 0.01 45 / 0.72), transparent 60%);
+  --gradient-menu-feature: linear-gradient(90deg, transparent 42%, oklch(0.08 0.01 45 / 0.55));
+  --gradient-menu-soft: linear-gradient(to top, oklch(0.12 0.02 50 / 0.2), transparent 50%);
 
   --background: oklch(0.975 0.012 84);
   --foreground: oklch(0.24 0.035 48);
@@ -186,6 +200,8 @@
 
 @utility bg-menu-card-veil { background: var(--gradient-menu-card); }
 @utility bg-menu-image-veil { background: var(--gradient-menu-image); }
+@utility bg-menu-feature-veil { background: var(--gradient-menu-feature); }
+@utility bg-menu-soft-veil { background: var(--gradient-menu-soft); }
 
 @utility menu-corner {
   position: absolute;
