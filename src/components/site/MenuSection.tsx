@@ -47,7 +47,7 @@ const favoriteNames = [
 function ProductDetails({ product }: { product: MenuProduct }) {
   return (
     <>
-      <div className="flex min-w-0 items-start justify-between gap-4">
+      <div className="min-w-0">
         <div className="min-w-0">
           <div className="mb-2 flex flex-wrap items-center gap-2">
             {product.popular ? (
@@ -64,7 +64,6 @@ function ProductDetails({ product }: { product: MenuProduct }) {
           </div>
           <h3 className="font-menu-display text-2xl leading-tight text-menu-cream">{product.name}</h3>
         </div>
-        <p className="shrink-0 font-menu-display text-2xl italic text-menu-gold">{product.price}</p>
       </div>
       <p className="mt-3 text-sm leading-relaxed text-menu-cream/58">{product.description}</p>
     </>
