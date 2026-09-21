@@ -90,12 +90,10 @@ export const menu = [
 export const menuCategories = [
   { id: "signature", label: "Signature Coffee", icon: "coffee" },
   { id: "espresso", label: "Espresso Bar", icon: "bean" },
-  { id: "milk", label: "Milk Coffee", icon: "milk" },
+  { id: "milk", label: "Latte Collection", icon: "milk" },
   { id: "cold", label: "Cold Coffee", icon: "snowflake" },
   { id: "desserts", label: "Desserts", icon: "cake" },
-  { id: "bakery", label: "Bakery", icon: "croissant" },
-  { id: "snacks", label: "Snacks", icon: "sandwich" },
-  { id: "tea", label: "Tea", icon: "leaf" },
+  { id: "snacks", label: "Gourmet Bites", icon: "sandwich" },
 ] as const;
 
 export type MenuCategory = (typeof menuCategories)[number]["id"];
@@ -106,6 +104,7 @@ export type MenuProduct = {
   description: string;
   price: string;
   image: string;
+  badge?: "Best Seller" | "Chef Special" | "New" | "Premium";
   popular?: boolean;
   vegetarian?: boolean;
   spice?: 1 | 2 | 3;
