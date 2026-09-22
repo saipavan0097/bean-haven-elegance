@@ -17,7 +17,6 @@ import p4 from "@/assets/person-4.jpg";
 import menuDesserts from "@/assets/menu-desserts.jpg";
 import menuBakery from "@/assets/menu-bakery.jpg";
 import menuSnacks from "@/assets/menu-snacks.jpg";
-import menuTea from "@/assets/menu-tea.jpg";
 
 export const navLinks = [
   { label: "Home", href: "#home" },
@@ -131,19 +130,15 @@ export const menuProducts: MenuProduct[] = [
   { name: "Chocolate Brownie", category: "desserts", description: "Dark chocolate brownie with a molten centre and sea salt.", price: "₹285", image: menuDesserts, popular: true, vegetarian: true },
   { name: "Cheesecake", category: "desserts", description: "Baked vanilla cheesecake with a seasonal berry compote.", price: "₹325", image: menuDesserts, vegetarian: true },
   { name: "Chocolate Lava Cake", category: "desserts", description: "Warm cacao cake with a flowing ganache heart.", price: "₹355", image: menuDesserts, vegetarian: true },
-  { name: "Butter Croissant", category: "bakery", description: "A flaky, cultured-butter croissant baked throughout the morning.", price: "₹195", image: menuBakery, popular: true, vegetarian: true },
-  { name: "Garlic Bread", category: "bakery", description: "Sourdough toasted with confit garlic and garden herbs.", price: "₹215", image: menuBakery, vegetarian: true },
-  { name: "Blueberry Muffin", category: "bakery", description: "Tender vanilla crumb filled with macerated blueberries.", price: "₹185", image: menuBakery, vegetarian: true },
-  { name: "Chocolate Muffin", category: "bakery", description: "Deep cocoa muffin studded with Belgian chocolate.", price: "₹195", image: menuBakery, vegetarian: true },
+  { name: "Butter Croissant", category: "snacks", description: "A flaky, cultured-butter croissant baked throughout the morning.", price: "₹195", image: menuBakery, popular: true, vegetarian: true, badge: "Best Seller" },
+  { name: "Garlic Bread", category: "snacks", description: "Sourdough toasted with confit garlic and garden herbs.", price: "₹215", image: menuBakery, vegetarian: true, badge: "Chef Special" },
+  { name: "Blueberry Muffin", category: "snacks", description: "Tender vanilla crumb filled with macerated blueberries.", price: "₹185", image: menuBakery, vegetarian: true, badge: "New" },
+  { name: "Chocolate Muffin", category: "snacks", description: "Deep cocoa muffin studded with Belgian chocolate.", price: "₹195", image: menuBakery, vegetarian: true, badge: "Premium" },
   { name: "Veg Sandwich", category: "snacks", description: "Garden vegetables, cheddar and mustard on toasted sourdough.", price: "₹265", image: menuSnacks, vegetarian: true, spice: 1 },
   { name: "Grilled Paneer Sandwich", category: "snacks", description: "Tandoori paneer, mint chutney and pickled onion in sourdough.", price: "₹325", image: menuSnacks, popular: true, vegetarian: true, spice: 2 },
   { name: "French Fries", category: "snacks", description: "Crisp skin-on fries with smoked salt and house aioli.", price: "₹225", image: menuSnacks, vegetarian: true, spice: 1 },
   { name: "Garlic Toast", category: "snacks", description: "Charred sourdough with roasted garlic butter and parsley.", price: "₹195", image: menuSnacks, vegetarian: true, spice: 1 },
   { name: "Veg Wrap", category: "snacks", description: "Grilled vegetables, hummus and crisp leaves in a warm flatbread.", price: "₹295", image: menuSnacks, vegetarian: true, spice: 2 },
-  { name: "Masala Tea", category: "tea", description: "Assam tea simmered with ginger and Bean Haven's whole-spice blend.", price: "₹165", image: menuTea, popular: true, vegetarian: true },
-  { name: "Green Tea", category: "tea", description: "Delicate whole leaves with a clean, quietly floral finish.", price: "₹155", image: menuTea, vegetarian: true },
-  { name: "Lemon Tea", category: "tea", description: "Bright black tea with fresh lemon and wildflower honey.", price: "₹165", image: menuTea, vegetarian: true },
-  { name: "Earl Grey", category: "tea", description: "Fine black tea scented with Calabrian bergamot.", price: "₹175", image: menuTea, vegetarian: true },
 ];
 
 export const offers = [
