@@ -110,7 +110,7 @@ export type MenuProduct = {
   rating: number;
 };
 
-export const menuProducts: MenuProduct[] = [
+export const menuProducts: MenuProduct[] = ([
   { name: "Bean Haven Signature", category: "signature", description: "House espresso, jaggery caramel and velvet cream crowned with cocoa.", price: "₹295", image: mocha, popular: true, vegetarian: true },
   { name: "Classic Cappuccino", category: "signature", description: "A precise balance of rich espresso, steamed milk and satin microfoam.", price: "₹245", image: cappuccino, popular: true, vegetarian: true },
   { name: "Caramel Latte", category: "signature", description: "Double ristretto with burnt caramel and silken whole milk.", price: "₹285", image: latte, popular: true, vegetarian: true },
@@ -140,7 +140,10 @@ export const menuProducts: MenuProduct[] = [
   { name: "French Fries", category: "snacks", description: "Crisp skin-on fries with smoked salt and house aioli.", price: "₹225", image: menuSnacks, vegetarian: true, spice: 1 },
   { name: "Garlic Toast", category: "snacks", description: "Charred sourdough with roasted garlic butter and parsley.", price: "₹195", image: menuSnacks, vegetarian: true, spice: 1 },
   { name: "Veg Wrap", category: "snacks", description: "Grilled vegetables, hummus and crisp leaves in a warm flatbread.", price: "₹295", image: menuSnacks, vegetarian: true, spice: 2 },
-].map((product, index) => ({ ...product, rating: Number((4.7 + (index % 3) * 0.1).toFixed(1)) }));
+] satisfies Omit<MenuProduct, "rating">[]).map((product, index) => ({
+  ...product,
+  rating: Number((4.7 + (index % 3) * 0.1).toFixed(1)),
+}));
 
 export const offers = [
   {
