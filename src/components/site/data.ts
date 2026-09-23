@@ -107,6 +107,7 @@ export type MenuProduct = {
   popular?: boolean;
   vegetarian?: boolean;
   spice?: 1 | 2 | 3;
+  rating: number;
 };
 
 export const menuProducts: MenuProduct[] = [
@@ -139,7 +140,7 @@ export const menuProducts: MenuProduct[] = [
   { name: "French Fries", category: "snacks", description: "Crisp skin-on fries with smoked salt and house aioli.", price: "₹225", image: menuSnacks, vegetarian: true, spice: 1 },
   { name: "Garlic Toast", category: "snacks", description: "Charred sourdough with roasted garlic butter and parsley.", price: "₹195", image: menuSnacks, vegetarian: true, spice: 1 },
   { name: "Veg Wrap", category: "snacks", description: "Grilled vegetables, hummus and crisp leaves in a warm flatbread.", price: "₹295", image: menuSnacks, vegetarian: true, spice: 2 },
-];
+].map((product, index) => ({ ...product, rating: Number((4.7 + (index % 3) * 0.1).toFixed(1)) }));
 
 export const offers = [
   {
@@ -212,33 +213,33 @@ export const testimonials = [
 export const features = [
   {
     icon: "beans",
-    title: "Fresh Beans",
+    title: "Freshly Roasted Beans",
     description: "Roasted in-house every 48 hours and never poured beyond day fourteen.",
   },
   {
-    icon: "barista",
-    title: "Expert Baristas",
-    description: "SCA-certified team, three national latte-art finalists behind the bar.",
-  },
-  {
-    icon: "ambience",
-    title: "Cozy Ambience",
-    description: "Walnut panelling, low brass light and vinyl jazz at a conversational volume.",
-  },
-  {
-    icon: "wifi",
-    title: "Free WiFi",
-    description: "Gigabit fibre, outlets at every table and a quiet-focus back room.",
-  },
-  {
-    icon: "fast",
-    title: "Fast Service",
-    description: "Average ninety seconds from order to cup, even at the morning peak.",
+    icon: "origin",
+    title: "Single Origin Coffee",
+    description: "Traceable micro-lots selected for clarity, sweetness and a distinct sense of place.",
   },
   {
     icon: "organic",
     title: "Organic Ingredients",
     description: "Certified organic beans, local dairy and syrups made in our own kitchen.",
+  },
+  {
+    icon: "barista",
+    title: "Experienced Baristas",
+    description: "SCA-certified team, three national latte-art finalists behind the bar.",
+  },
+  {
+    icon: "ambience",
+    title: "Premium Ambience",
+    description: "Walnut panelling, low brass light and vinyl jazz at a conversational volume.",
+  },
+  {
+    icon: "fast",
+    title: "Fast Service",
+    description: "Average ninety seconds from order to cup, even at the morning peak.",
   },
 ] as const;
 

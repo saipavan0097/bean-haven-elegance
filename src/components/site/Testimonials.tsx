@@ -40,7 +40,7 @@ export function Testimonials() {
           >
             {testimonials.map((t) => (
               <li key={t.name} className="w-full shrink-0 px-1 sm:px-3">
-                <figure className="glass rounded-[2rem] p-8 sm:p-12">
+                <figure className="glass rounded-[2rem] border-gold/15 p-8 shadow-lift transition-transform duration-500 hover:-translate-y-1 sm:p-12">
                   <Quote className="size-9 text-gold/70" aria-hidden />
                   <blockquote className="mt-6 font-display text-2xl leading-relaxed text-cream sm:text-3xl">
                     “{t.quote}”

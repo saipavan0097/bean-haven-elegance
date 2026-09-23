@@ -28,6 +28,7 @@ type Errors = Partial<Record<keyof z.infer<typeof schema>, string>>;
 export function Reservation() {
   const [errors, setErrors] = useState<Errors>({});
   const [submitting, setSubmitting] = useState(false);
+  const [confirmedName, setConfirmedName] = useState<string | null>(null);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -51,6 +52,7 @@ export function Reservation() {
     window.setTimeout(() => {
       setSubmitting(false);
       form.reset();
+      setConfirmedName(parsed.data.name.split(" ")[0] ?? parsed.data.name);
       toast.success("Table requested", {
         description: `Thank you, ${parsed.data.name.split(" ")[0]} — we'll confirm your table by email within the hour.`,
       });
@@ -187,7 +189,12 @@ export function Reservation() {
                 </div>
               </div>
 
-              <Button type="submit" variant="espresso" size="xl" disabled={submitting} className="mt-8 w-full">
+              {confirmedName ? (
+                <div role="status" className="mt-8 rounded-xl border border-gold/35 bg-gold/10 p-4 text-sm leading-6 text-espresso">
+                  Thank you, {confirmedName}. Your request is in — confirmation will arrive by email within the hour.
+                </div>
+              ) : null}
+              <Button type="submit" variant="espresso" size="xl" disabled={submitting} className="mt-5 w-full transition-transform duration-300 hover:-translate-y-1">
                 {submitting ? "Sending request…" : "Reserve Table"}
               </Button>
             </form>
