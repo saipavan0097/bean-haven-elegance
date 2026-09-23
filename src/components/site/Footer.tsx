@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Coffee, Send } from "lucide-react";
+import { Coffee, Github, Instagram, Linkedin, Mail, MessageCircle, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { navLinks, hours } from "./data";
@@ -20,7 +20,7 @@ export function Footer() {
     }
     setEmail("");
     toast.success("You're on the list", {
-      description: "Expect one letter a month: new roasts, tastings and quiet-hour invites.",
+      description: "Your free coffee coupon is on its way, with our monthly roast letter.",
     });
   };
 
@@ -68,7 +68,7 @@ export function Footer() {
           <div>
             <h3 className="eyebrow text-gold">Newsletter</h3>
             <p className="mt-5 text-sm leading-relaxed">
-              One letter a month — new micro-lots, tasting nights and member-only hours.
+              Join the roast letter and receive a free coffee coupon with your welcome email.
             </p>
             <form onSubmit={subscribe} className="mt-5 flex gap-2">
               <label htmlFor="newsletter" className="sr-only">
@@ -99,6 +99,22 @@ export function Footer() {
             <a href="#faq" className="transition-colors hover:text-gold">
               Terms
             </a>
+          </div>
+        </div>
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-cream/12 py-6 text-xs sm:flex-row">
+          <p className="text-cream/55">Designed &amp; Developed by <span className="text-gold">Sai Pavan Rali</span></p>
+          <div className="flex items-center gap-2">
+            {[
+              { label: "GitHub", href: "https://github.com/saipavan0097", Icon: Github },
+              { label: "LinkedIn", href: "https://www.linkedin.com/in/saipavanrali/", Icon: Linkedin },
+              { label: "Instagram", href: "https://instagram.com/saipavanrali", Icon: Instagram },
+              { label: "Email", href: "mailto:saipavanvizag601@gmail.com", Icon: Mail },
+              { label: "WhatsApp", href: "https://wa.me/917661930097", Icon: MessageCircle },
+            ].map(({ label, href, Icon }) => (
+              <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noreferrer" : undefined} aria-label={`${label} — Sai Pavan Rali`} className="flex size-9 items-center justify-center rounded-full border border-cream/15 text-cream/55 transition-all duration-300 hover:-translate-y-1 hover:border-gold/60 hover:text-gold">
+                <Icon className="size-4" />
+              </a>
+            ))}
           </div>
         </div>
       </div>

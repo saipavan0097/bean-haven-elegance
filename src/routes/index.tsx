@@ -11,6 +11,8 @@ import { Reservation } from "@/components/site/Reservation";
 import { Faq } from "@/components/site/Faq";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
+import { FeaturedDrinks } from "@/components/site/FeaturedDrinks";
+import { LoadingScreen } from "@/components/site/LoadingScreen";
 
 const title = "Bean Haven — Small-Batch Coffee Roastery & Lounge";
 const description =
@@ -66,6 +68,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background">
+      <LoadingScreen />
       <a
         href="#menu"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-full focus:bg-gold focus:px-5 focus:py-2 focus:text-accent-foreground"
@@ -77,6 +80,7 @@ function Index() {
         <Hero />
         <About />
         <MenuSection />
+        <FeaturedDrinks />
         <Offers />
         <Gallery />
         <WhyUs />

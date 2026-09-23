@@ -19,6 +19,12 @@ function StatItem({ value, suffix, label }: { value: number; suffix: string; lab
 }
 
 export function About() {
+  const timeline = [
+    ["2008", "Six seats, one roaster, one uncompromising house blend."],
+    ["2016", "Direct partnerships began with family farms across three origins."],
+    ["Today", "A seventy-seat haven, still roasting every batch beneath the same roof."],
+  ];
+
   return (
     <section id="about" className="relative py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20">
@@ -30,7 +36,7 @@ export function About() {
             width={1200}
             height={1408}
             loading="lazy"
-            className="relative w-full rounded-[2rem] object-cover shadow-lift"
+            className="relative aspect-[4/5] w-full rounded-[2rem] object-cover shadow-lift"
           />
           <div className="glass-light absolute -bottom-8 left-6 right-6 rounded-2xl p-5 shadow-soft sm:left-10 sm:right-auto sm:w-64">
             <p className="font-display text-2xl text-espresso">Roasted on site</p>
@@ -60,6 +66,16 @@ export function About() {
               measured in seconds and grams.
             </p>
           </div>
+
+          <ol className="mt-9 border-l border-gold/40 pl-6">
+            {timeline.map(([year, copy]) => (
+              <li key={year} className="relative pb-6 last:pb-0">
+                <span className="absolute -left-[1.7rem] top-1.5 size-2.5 rounded-full border-2 border-background bg-gold shadow-gold" />
+                <p className="eyebrow text-caramel">{year}</p>
+                <p className="mt-1 text-sm leading-6 text-muted-foreground">{copy}</p>
+              </li>
+            ))}
+          </ol>
 
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
             {stats.map((s) => (

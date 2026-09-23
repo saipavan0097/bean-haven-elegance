@@ -3,6 +3,7 @@ import { X, ChevronLeft, ChevronRight, Expand } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { gallery } from "./data";
+import { cn } from "@/lib/utils";
 
 export function Gallery() {
   const [index, setIndex] = useState<number | null>(null);
@@ -39,9 +40,9 @@ export function Gallery() {
           description="Brass, walnut and steam — a look at the room, the roast and the people who fill both."
         />
 
-        <ul className="mt-16 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+        <ul className="mt-16 columns-2 gap-4 sm:gap-6 lg:columns-3">
           {gallery.map((img, i) => (
-            <Reveal as="li" key={img.alt} delay={i * 70}>
+            <Reveal as="li" key={img.alt} delay={i * 70} className="mb-4 break-inside-avoid sm:mb-6">
               <button
                 type="button"
                 onClick={() => setIndex(i)}
@@ -54,7 +55,7 @@ export function Gallery() {
                   width={1000}
                   height={1000}
                   loading="lazy"
-                  className="aspect-square size-full object-cover transition-transform duration-[900ms] group-hover:scale-115"
+                  className={cn("w-full object-cover transition-transform duration-[900ms] group-hover:scale-105", i % 3 === 1 ? "aspect-[4/5]" : i % 3 === 2 ? "aspect-[5/4]" : "aspect-square")}
                 />
                 <span className="absolute inset-0 bg-espresso/0 transition-colors duration-500 group-hover:bg-espresso/45" />
                 <span className="glass absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-75 rounded-full p-3.5 text-cream opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100">
