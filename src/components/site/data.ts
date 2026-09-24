@@ -97,18 +97,132 @@ export const menuCategories = [
 
 export type MenuCategory = (typeof menuCategories)[number]["id"];
 
+export type MenuSize = { label: "Small" | "Medium" | "Large"; volume: string; delta: number };
+
+export type MenuReview = { name: string; rating: number; date: string; comment: string };
+
 export type MenuProduct = {
   name: string;
+  slug: string;
   category: MenuCategory;
+  categoryLabel: string;
   description: string;
   price: string;
+  basePrice: number;
   image: string;
   badge?: "Best Seller" | "Chef Special" | "New" | "Premium";
   popular?: boolean;
   vegetarian?: boolean;
   spice?: 1 | 2 | 3;
   rating: number;
+  ingredients: string[];
+  roast: string;
+  strength: 1 | 2 | 3 | 4 | 5;
+  sizes: MenuSize[];
+  story: string;
+  brewing: string;
+  flavorNotes: string[];
+  calories: number;
+  allergens: string[];
+  pairing: string;
+  reviews: MenuReview[];
 };
+
+type CategoryProfile = {
+  roast: string;
+  strength: 1 | 2 | 3 | 4 | 5;
+  ingredients: string[];
+  brewing: string;
+  flavorNotes: string[];
+  calories: number;
+  allergens: string[];
+  pairing: string;
+};
+
+const categoryProfiles: Record<MenuCategory, CategoryProfile> = {
+  signature: {
+    roast: "Medium-dark · Haven house blend",
+    strength: 4,
+    ingredients: ["Double shot house espresso", "Steamed whole milk", "House syrup", "Cocoa dust"],
+    brewing: "Pulled at 9 bar for 27 seconds on our lever machine, then finished with milk textured to 62°C for a glossy, dense microfoam.",
+    flavorNotes: ["Dark cocoa", "Burnt caramel", "Toasted hazelnut"],
+    calories: 210,
+    allergens: ["Milk"],
+    pairing: "Butter Croissant or a slice of Tiramisu",
+  },
+  espresso: {
+    roast: "Dark · Colombian Huila single origin",
+    strength: 5,
+    ingredients: ["18g freshly ground single-origin coffee", "Filtered water"],
+    brewing: "Ground to order and extracted as a 1:2 ratio ristretto-forward shot, served in a pre-warmed porcelain demitasse.",
+    flavorNotes: ["Bittersweet cacao", "Dried fig", "Citrus peel"],
+    calories: 12,
+    allergens: [],
+    pairing: "Chocolate Brownie or a square of 70% dark chocolate",
+  },
+  milk: {
+    roast: "Medium · Ethiopian Guji",
+    strength: 3,
+    ingredients: ["Double ristretto", "Silky steamed milk", "Microfoam finish"],
+    brewing: "Ristretto base poured through milk stretched to a paint-like texture, free-poured into a tulip by hand.",
+    flavorNotes: ["Milk chocolate", "Vanilla", "Soft stone fruit"],
+    calories: 190,
+    allergens: ["Milk"],
+    pairing: "Blueberry Muffin",
+  },
+  cold: {
+    roast: "Light-medium · Ethiopian Gayo lot",
+    strength: 3,
+    ingredients: ["Coarse-ground Ethiopian coffee", "Cold filtered water", "Hand-cut ice"],
+    brewing: "Steeped for eighteen hours at 4°C, then filtered twice for a clean, low-acid concentrate poured over clear ice.",
+    flavorNotes: ["Ripe berry", "Cane sugar", "Cold cocoa"],
+    calories: 120,
+    allergens: [],
+    pairing: "Cheesecake or the Veg Wrap",
+  },
+  desserts: {
+    roast: "Not applicable · patisserie",
+    strength: 2,
+    ingredients: ["Belgian chocolate", "Mascarpone", "Free-range eggs", "Cultured butter", "Cane sugar"],
+    brewing: "Made fresh each morning in our open pastry kitchen and rested to serving temperature before plating.",
+    flavorNotes: ["Dark cocoa", "Vanilla cream", "Brown butter"],
+    calories: 380,
+    allergens: ["Milk", "Eggs", "Wheat", "May contain nuts"],
+    pairing: "Espresso or Cold Brew",
+  },
+  snacks: {
+    roast: "Not applicable · kitchen-made",
+    strength: 1,
+    ingredients: ["Sourdough baked in-house", "Seasonal vegetables", "Aged cheddar", "Herb butter"],
+    brewing: "Prepared to order on the grill, seasoned with smoked salt and finished with house aioli.",
+    flavorNotes: ["Toasted grain", "Garden herb", "Smoked salt"],
+    calories: 320,
+    allergens: ["Wheat", "Milk"],
+    pairing: "Flat White or Iced Latte",
+  },
+};
+
+const reviewPool: Omit<MenuReview, "rating">[] = [
+  { name: "Ananya Sharma", date: "March 2026", comment: "Genuinely the most considered cup in the city — it tastes exactly the same every visit." },
+  { name: "Marcus Lindqvist", date: "February 2026", comment: "Beautifully balanced and served at the right temperature. The presentation alone is worth the price." },
+  { name: "Yuna Park", date: "February 2026", comment: "My standing order. Rich without being heavy, and the staff remember how I like it." },
+  { name: "Rohit Menon", date: "January 2026", comment: "Brought a client here and they ordered a second one immediately. Quietly excellent." },
+];
+
+const sizeLadder: MenuSize[] = [
+  { label: "Small", volume: "180 ml", delta: -30 },
+  { label: "Medium", volume: "240 ml", delta: 0 },
+  { label: "Large", volume: "320 ml", delta: 45 },
+];
+
+const plateLadder: MenuSize[] = [
+  { label: "Small", volume: "Single portion", delta: -35 },
+  { label: "Medium", volume: "Regular plate", delta: 0 },
+  { label: "Large", volume: "Sharing plate", delta: 60 },
+];
+
+const slugify = (value: string) =>
+  value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
 export const menuProducts: MenuProduct[] = ([
   { name: "Bean Haven Signature", category: "signature", description: "House espresso, jaggery caramel and velvet cream crowned with cocoa.", price: "₹295", image: mocha, popular: true, vegetarian: true },
@@ -140,10 +254,37 @@ export const menuProducts: MenuProduct[] = ([
   { name: "French Fries", category: "snacks", description: "Crisp skin-on fries with smoked salt and house aioli.", price: "₹225", image: menuSnacks, vegetarian: true, spice: 1 },
   { name: "Garlic Toast", category: "snacks", description: "Charred sourdough with roasted garlic butter and parsley.", price: "₹195", image: menuSnacks, vegetarian: true, spice: 1 },
   { name: "Veg Wrap", category: "snacks", description: "Grilled vegetables, hummus and crisp leaves in a warm flatbread.", price: "₹295", image: menuSnacks, vegetarian: true, spice: 2 },
-] satisfies Omit<MenuProduct, "rating">[]).map((product, index) => ({
-  ...product,
-  rating: Number((4.7 + (index % 3) * 0.1).toFixed(1)),
-}));
+] as const).map((product, index) => {
+  const profile = categoryProfiles[product.category];
+  const basePrice = Number(product.price.replace(/[^0-9]/g, ""));
+  const isFood = product.category === "desserts" || product.category === "snacks";
+  const rating = Number((4.7 + (index % 3) * 0.1).toFixed(1));
+
+  return {
+    ...product,
+    slug: slugify(product.name),
+    categoryLabel: menuCategories.find((category) => category.id === product.category)?.label ?? "Menu",
+    basePrice,
+    rating,
+    ingredients: profile.ingredients,
+    roast: profile.roast,
+    strength: profile.strength,
+    sizes: isFood ? plateLadder : sizeLadder,
+    story: `${product.name} began as a staff experiment behind the Bean Haven bar and stayed on the menu by popular demand. ${product.description} Every serve is built to order, weighed to the gram and finished by hand so the last mouthful tastes like the first.`,
+    brewing: profile.brewing,
+    flavorNotes: profile.flavorNotes,
+    calories: profile.calories,
+    allergens: profile.allergens,
+    pairing: profile.pairing,
+    reviews: reviewPool.map((review, reviewIndex) => ({
+      ...review,
+      rating: reviewIndex === 3 ? 4 : 5,
+    })).slice(0, 3 + (index % 2)),
+  } satisfies MenuProduct;
+});
+
+export const findMenuProduct = (slug: string) =>
+  menuProducts.find((product) => product.slug === slug);
 
 export const offers = [
   {
