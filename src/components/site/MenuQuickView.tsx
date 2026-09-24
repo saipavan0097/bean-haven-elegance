@@ -33,8 +33,9 @@ export function MenuQuickView({
   product: MenuProduct;
   onClose: () => void;
 }) {
-  const [size, setSize] = useState(product.sizes[1]?.label ?? product.sizes[0].label);
-  const active = product.sizes.find((option) => option.label === size) ?? product.sizes[0];
+  const fallback = product.sizes[1] ?? product.sizes[0]!;
+  const [size, setSize] = useState(fallback.label);
+  const active = product.sizes.find((option) => option.label === size) ?? fallback;
   const price = product.basePrice + active.delta;
 
   return (
