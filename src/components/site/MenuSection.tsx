@@ -1,9 +1,11 @@
 import { useMemo, useState } from "react";
-import { Bean, CakeSlice, ChefHat, Coffee, Eye, Milk, Plus, Sandwich, ShoppingBag, Snowflake, Sparkles, Star, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, Bean, CakeSlice, ChefHat, Coffee, Eye, Milk, Plus, Sandwich, Snowflake, Sparkles, Star } from "lucide-react";
 import { toast } from "sonner";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { MenuQuickView } from "./MenuQuickView";
 import {
   menuCategories,
   menuProducts,
@@ -30,6 +32,7 @@ function ProductDetails({ product }: { product: MenuProduct }) {
         <span className="shrink-0 font-menu-display text-2xl italic text-menu-gold">{product.price}</span>
       </div>
       <h3 className="mt-5 font-menu-display text-3xl leading-none text-menu-ink">{product.name}</h3>
+      <span className="mt-2 block text-[0.62rem] uppercase tracking-[0.2em] text-menu-muted">{product.categoryLabel}</span>
       <div className="mt-3 flex items-center gap-2 text-xs text-menu-muted" aria-label={`${product.rating} out of 5 stars`}>
         <span className="flex gap-0.5 text-menu-gold">
           {Array.from({ length: 5 }).map((_, index) => <Star key={index} className="size-3 fill-current" />)}
@@ -55,7 +58,9 @@ function EditorialCard({ product, index, onQuickView }: { product: MenuProduct; 
           <ProductDetails product={product} />
           <div className="mt-auto flex flex-wrap gap-2 pt-6">
             <Button variant="outlineGold" size="sm" onClick={() => onQuickView(product)}><Eye /> Quick View</Button>
-            <Button variant="gold" size="sm" onClick={() => toast.success(`${product.name} added to your order`)}><ShoppingBag /> Order Now</Button>
+            <Button asChild variant="gold" size="sm">
+              <Link to="/menu/$slug" params={{ slug: product.slug }}>View Details <ArrowRight /></Link>
+            </Button>
           </div>
         </div>
       </article>
@@ -125,24 +130,7 @@ export function MenuSection() {
         <p className="mt-16 text-center font-menu-display text-xl italic text-menu-gold">Ethically sourced. Composed with care. Made fresh for every order.</p>
       </div>
 
-      {quickView ? (
-        <div role="dialog" aria-modal="true" aria-label={`${quickView.name} details`} className="fixed inset-0 z-[80] grid place-items-center bg-menu-noir/90 p-4 backdrop-blur-md" onClick={() => setQuickView(null)}>
-          <article className="relative grid w-full max-w-3xl overflow-hidden rounded-lg border border-menu-gold/35 bg-menu-paper shadow-menu-luxe sm:grid-cols-2" onClick={(event) => event.stopPropagation()}>
-            <img src={quickView.image} alt={quickView.name} width={800} height={800} className="aspect-square size-full object-cover" />
-            <div className="flex flex-col justify-center p-8 sm:p-10">
-              <Button variant="ghost" size="icon" aria-label="Close quick view" className="absolute right-3 top-3" onClick={() => setQuickView(null)}><X /></Button>
-              <span className="menu-kicker">Barista selection</span>
-              <h3 className="mt-4 font-menu-display text-4xl text-menu-ink">{quickView.name}</h3>
-              <p className="mt-4 text-sm leading-7 text-menu-muted">{quickView.description}</p>
-              <div className="mt-6 flex items-center justify-between border-t border-menu-gold/25 pt-5">
-                <span className="font-menu-display text-3xl italic text-menu-gold">{quickView.price}</span>
-                <span className="flex items-center gap-1 text-sm text-menu-gold"><Star className="size-4 fill-current" /> {quickView.rating.toFixed(1)}</span>
-              </div>
-              <Button variant="gold" className="mt-7" onClick={() => toast.success(`${quickView.name} added to your order`)}><Plus /> Order Now</Button>
-            </div>
-          </article>
-        </div>
-      ) : null}
+      {quickView ? <MenuQuickView product={quickView} onClose={() => setQuickView(null)} /> : null}
     </section>
   );
 }
