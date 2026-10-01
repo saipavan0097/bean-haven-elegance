@@ -88,11 +88,18 @@ export const menu = [
 
 export const menuCategories = [
   { id: "signature", label: "Signature Coffee", icon: "coffee" },
-  { id: "espresso", label: "Espresso Bar", icon: "bean" },
-  { id: "milk", label: "Latte Collection", icon: "milk" },
+  { id: "filter", label: "South Indian Filter Coffee", icon: "filter" },
   { id: "cold", label: "Cold Coffee", icon: "snowflake" },
+  { id: "tea", label: "Tea", icon: "leaf" },
+  { id: "hotmilk", label: "Hot Milk", icon: "milk" },
+  { id: "shakes", label: "Milkshakes", icon: "shake" },
+  { id: "mojitos", label: "Mojitos", icon: "citrus" },
+  { id: "lassi", label: "Fresh Lassi", icon: "glass" },
+  { id: "sandwiches", label: "Sandwiches", icon: "sandwich" },
+  { id: "snacks", label: "Snacks", icon: "cookie" },
+  { id: "momos", label: "Momos", icon: "soup" },
+  { id: "corn", label: "Corn", icon: "wheat" },
   { id: "desserts", label: "Desserts", icon: "cake" },
-  { id: "snacks", label: "Gourmet Bites", icon: "sandwich" },
 ] as const;
 
 export type MenuCategory = (typeof menuCategories)[number]["id"];
@@ -114,6 +121,7 @@ export type MenuProduct = {
   popular?: boolean;
   vegetarian?: boolean;
   spice?: 1 | 2 | 3;
+  beverage: boolean;
   rating: number;
   ingredients: string[];
   roast: string;
@@ -129,6 +137,7 @@ export type MenuProduct = {
 };
 
 type CategoryProfile = {
+  beverage: boolean;
   roast: string;
   strength: 1 | 2 | 3 | 4 | 5;
   ingredients: string[];
@@ -141,6 +150,7 @@ type CategoryProfile = {
 
 const categoryProfiles: Record<MenuCategory, CategoryProfile> = {
   signature: {
+    beverage: true,
     roast: "Medium-dark · Haven house blend",
     strength: 4,
     ingredients: ["Double shot house espresso", "Steamed whole milk", "House syrup", "Cocoa dust"],
@@ -150,37 +160,129 @@ const categoryProfiles: Record<MenuCategory, CategoryProfile> = {
     allergens: ["Milk"],
     pairing: "Butter Croissant or a slice of Tiramisu",
   },
-  espresso: {
-    roast: "Dark · Colombian Huila single origin",
+  filter: {
+    beverage: true,
+    roast: "Dark · Chikmagalur peaberry with 20% chicory",
     strength: 5,
-    ingredients: ["18g freshly ground single-origin coffee", "Filtered water"],
-    brewing: "Ground to order and extracted as a 1:2 ratio ristretto-forward shot, served in a pre-warmed porcelain demitasse.",
-    flavorNotes: ["Bittersweet cacao", "Dried fig", "Citrus peel"],
-    calories: 12,
-    allergens: [],
-    pairing: "Chocolate Brownie or a square of 70% dark chocolate",
-  },
-  milk: {
-    roast: "Medium · Ethiopian Guji",
-    strength: 3,
-    ingredients: ["Double ristretto", "Silky steamed milk", "Microfoam finish"],
-    brewing: "Ristretto base poured through milk stretched to a paint-like texture, free-poured into a tulip by hand.",
-    flavorNotes: ["Milk chocolate", "Vanilla", "Soft stone fruit"],
-    calories: 190,
+    ingredients: ["Chikmagalur peaberry", "Roasted chicory", "Full-cream milk", "Palm jaggery or cane sugar"],
+    brewing: "Slow-dripped through a brass filter for twelve minutes, then pulled metre-high between dabarah and tumbler for a natural froth.",
+    flavorNotes: ["Roasted chicory", "Jaggery", "Dark caramel"],
+    calories: 140,
     allergens: ["Milk"],
-    pairing: "Blueberry Muffin",
+    pairing: "Butter Corn Cup or a Masala Toast",
   },
   cold: {
-    roast: "Light-medium · Ethiopian Gayo lot",
+    beverage: true,
+    roast: "Light-medium · Ethiopian Guji lot",
     strength: 3,
-    ingredients: ["Coarse-ground Ethiopian coffee", "Cold filtered water", "Hand-cut ice"],
+    ingredients: ["Coarse-ground Ethiopian coffee", "Cold filtered water", "Fresh milk", "Hand-cut ice"],
     brewing: "Steeped for eighteen hours at 4°C, then filtered twice for a clean, low-acid concentrate poured over clear ice.",
     flavorNotes: ["Ripe berry", "Cane sugar", "Cold cocoa"],
-    calories: 120,
+    calories: 160,
+    allergens: ["Milk"],
+    pairing: "Cheesecake or a Paneer Tikka Sandwich",
+  },
+  tea: {
+    beverage: true,
+    roast: "Not applicable · Assam & Darjeeling leaf",
+    strength: 3,
+    ingredients: ["Whole-leaf tea", "Fresh ginger", "Green cardamom", "Filtered water"],
+    brewing: "Leaves steeped at a precise temperature for their grade — 95°C for black teas, 80°C for greens — then strained to order.",
+    flavorNotes: ["Malty leaf", "Warm spice", "Honeyed finish"],
+    calories: 70,
     allergens: [],
-    pairing: "Cheesecake or the Veg Wrap",
+    pairing: "Masala Fries or Classic Veg Momos",
+  },
+  hotmilk: {
+    beverage: true,
+    roast: "Not applicable · slow-simmered milk",
+    strength: 1,
+    ingredients: ["A2 full-cream milk", "Kashmiri saffron", "Almonds", "Organic turmeric"],
+    brewing: "Simmered gently for twenty minutes in brass with whole spices, then frothed by hand just before serving.",
+    flavorNotes: ["Saffron", "Toasted almond", "Warm cardamom"],
+    calories: 230,
+    allergens: ["Milk", "Tree nuts"],
+    pairing: "Chocolate Brownie",
+  },
+  shakes: {
+    beverage: true,
+    roast: "Not applicable · hand-spun",
+    strength: 1,
+    ingredients: ["Fresh whole milk", "Artisanal ice cream", "Seasonal fruit or chocolate", "Whipped cream"],
+    brewing: "Hand-spun to order on a vintage mixer, poured into a chilled glass and finished with fresh whipped cream.",
+    flavorNotes: ["Creamy vanilla", "Rich cocoa", "Ripe fruit"],
+    calories: 420,
+    allergens: ["Milk", "May contain nuts"],
+    pairing: "Peri Peri Fries",
+  },
+  mojitos: {
+    beverage: true,
+    roast: "Not applicable · zero-proof bar",
+    strength: 1,
+    ingredients: ["Fresh mint", "Hand-pressed lime", "Cane sugar", "Sparkling water", "Crushed ice"],
+    brewing: "Mint and lime gently muddled to release their oils, layered with crushed ice and topped with chilled sparkling water.",
+    flavorNotes: ["Bright citrus", "Cool mint", "Light fizz"],
+    calories: 110,
+    allergens: [],
+    pairing: "Crispy Corn or Fried Momos",
+  },
+  lassi: {
+    beverage: true,
+    roast: "Not applicable · house-set curd",
+    strength: 1,
+    ingredients: ["House-set curd", "Alphonso mango or rose", "Saffron", "Pistachio"],
+    brewing: "Our curd is set overnight, then churned by hand with fruit and served chilled in a clay kulhad.",
+    flavorNotes: ["Tangy curd", "Ripe mango", "Floral saffron"],
+    calories: 260,
+    allergens: ["Milk", "Tree nuts"],
+    pairing: "Grilled Paneer Sandwich",
+  },
+  sandwiches: {
+    beverage: false,
+    roast: "Not applicable · kitchen-made",
+    strength: 1,
+    ingredients: ["Sourdough baked in-house", "Seasonal vegetables", "Aged cheddar", "Herb butter"],
+    brewing: "Assembled to order and pressed on a cast-iron grill until golden, then finished with house aioli.",
+    flavorNotes: ["Toasted grain", "Garden herb", "Smoked salt"],
+    calories: 340,
+    allergens: ["Wheat", "Milk"],
+    pairing: "Cold Brew or an Iced Latte",
+  },
+  snacks: {
+    beverage: false,
+    roast: "Not applicable · kitchen-made",
+    strength: 1,
+    ingredients: ["Farm potatoes", "Cold-pressed oil", "House spice blend", "Garlic aioli"],
+    brewing: "Double-cooked for a crisp shell and soft centre, then tossed in our house spice blend at the pass.",
+    flavorNotes: ["Crisp", "Smoky spice", "Garlic"],
+    calories: 310,
+    allergens: ["Eggs (aioli)"],
+    pairing: "Classic Mint Mojito",
+  },
+  momos: {
+    beverage: false,
+    roast: "Not applicable · hand-folded",
+    strength: 1,
+    ingredients: ["Hand-rolled wheat wrappers", "Cabbage & carrot", "Spring onion", "Fiery tomato chutney"],
+    brewing: "Folded by hand each morning, steamed in bamboo baskets for nine minutes and served with roasted tomato chutney.",
+    flavorNotes: ["Garlic", "Spring onion", "Chilli heat"],
+    calories: 280,
+    allergens: ["Wheat", "Soy"],
+    pairing: "Lemon Iced Tea or a Mojito",
+  },
+  corn: {
+    beverage: false,
+    roast: "Not applicable · kitchen-made",
+    strength: 1,
+    ingredients: ["Sweet American corn", "Salted butter", "Chaat masala", "Fresh lime"],
+    brewing: "Steamed kernels tossed in brown butter and spices in a hot pan, finished with lime at the table.",
+    flavorNotes: ["Sweet corn", "Brown butter", "Tangy spice"],
+    calories: 190,
+    allergens: ["Milk"],
+    pairing: "Filter Coffee or Masala Chai",
   },
   desserts: {
+    beverage: false,
     roast: "Not applicable · patisserie",
     strength: 2,
     ingredients: ["Belgian chocolate", "Mascarpone", "Free-range eggs", "Cultured butter", "Cane sugar"],
@@ -189,16 +291,6 @@ const categoryProfiles: Record<MenuCategory, CategoryProfile> = {
     calories: 380,
     allergens: ["Milk", "Eggs", "Wheat", "May contain nuts"],
     pairing: "Espresso or Cold Brew",
-  },
-  snacks: {
-    roast: "Not applicable · kitchen-made",
-    strength: 1,
-    ingredients: ["Sourdough baked in-house", "Seasonal vegetables", "Aged cheddar", "Herb butter"],
-    brewing: "Prepared to order on the grill, seasoned with smoked salt and finished with house aioli.",
-    flavorNotes: ["Toasted grain", "Garden herb", "Smoked salt"],
-    calories: 320,
-    allergens: ["Wheat", "Milk"],
-    pairing: "Flat White or Iced Latte",
   },
 };
 
@@ -224,40 +316,83 @@ const plateLadder: MenuSize[] = [
 const slugify = (value: string) =>
   value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
-export const menuProducts: MenuProduct[] = ([
-  { name: "Bean Haven Signature", category: "signature", description: "House espresso, jaggery caramel and velvet cream crowned with cocoa.", price: "₹295", image: mocha, popular: true, vegetarian: true },
+type BaseProduct = Pick<MenuProduct, "name" | "category" | "description" | "price" | "image" | "badge" | "popular" | "vegetarian" | "spice">;
+
+const baseProducts: BaseProduct[] = [
+  // Signature Coffee (includes espresso bar & latte collection)
+  { name: "Bean Haven Signature", category: "signature", description: "House espresso, jaggery caramel and velvet cream crowned with cocoa.", price: "₹295", image: mocha, popular: true, vegetarian: true, badge: "Chef Special" },
   { name: "Classic Cappuccino", category: "signature", description: "A precise balance of rich espresso, steamed milk and satin microfoam.", price: "₹245", image: cappuccino, popular: true, vegetarian: true },
   { name: "Caramel Latte", category: "signature", description: "Double ristretto with burnt caramel and silken whole milk.", price: "₹285", image: latte, popular: true, vegetarian: true },
   { name: "Vanilla Latte", category: "signature", description: "Madagascar vanilla, house espresso and softly textured milk.", price: "₹275", image: latte, vegetarian: true },
   { name: "Hazelnut Latte", category: "signature", description: "Toasted hazelnut praline folded into a fragrant double shot.", price: "₹285", image: cappuccino, vegetarian: true },
-  { name: "Espresso", category: "espresso", description: "A concentrated pull with dark cocoa, citrus and caramel depth.", price: "₹165", image: espresso, vegetarian: true },
-  { name: "Double Espresso", category: "espresso", description: "Two full-bodied shots for a longer, more resonant finish.", price: "₹205", image: espresso, vegetarian: true },
-  { name: "Americano", category: "espresso", description: "Double espresso opened with soft filtered water.", price: "₹195", image: americano, vegetarian: true },
-  { name: "Macchiato", category: "espresso", description: "Espresso marked with a spoon of lustrous milk foam.", price: "₹215", image: espresso, vegetarian: true },
-  { name: "Flat White", category: "milk", description: "Velvety microfoam poured over a deep double ristretto.", price: "₹245", image: latte, popular: true, vegetarian: true },
-  { name: "Café Mocha", category: "milk", description: "Single-origin cocoa, espresso and steamed milk with chocolate curls.", price: "₹295", image: mocha, vegetarian: true },
-  { name: "Spanish Latte", category: "milk", description: "A luscious condensed-milk latte with cinnamon warmth.", price: "₹285", image: cappuccino, vegetarian: true },
+  { name: "Espresso", category: "signature", description: "A concentrated pull with dark cocoa, citrus and caramel depth.", price: "₹165", image: espresso, vegetarian: true },
+  { name: "Americano", category: "signature", description: "Double espresso opened with soft filtered water.", price: "₹195", image: americano, vegetarian: true },
+  { name: "Flat White", category: "signature", description: "Velvety microfoam poured over a deep double ristretto.", price: "₹245", image: latte, popular: true, vegetarian: true },
+  { name: "Café Mocha", category: "signature", description: "Single-origin cocoa, espresso and steamed milk with chocolate curls.", price: "₹295", image: mocha, vegetarian: true },
+  // South Indian Filter Coffee
+  { name: "Kumbakonam Degree Coffee", category: "filter", description: "The legendary first-decoction brew with fresh cow's milk, served frothing in brass.", price: "₹145", image: filterImg, popular: true, vegetarian: true, badge: "Best Seller" },
+  { name: "Mylapore Jaggery Filter", category: "filter", description: "Chicory-rich decoction sweetened with palm jaggery for a deep, molasses finish.", price: "₹165", image: filterImg, vegetarian: true, badge: "Chef Special" },
+  { name: "Malnad Black Filter", category: "filter", description: "Strong, milk-free decoction with a hint of cardamom — pure Malnad tradition.", price: "₹135", image: filterImg, vegetarian: true },
+  { name: "Iced Filter Kaapi", category: "filter", description: "Our classic decoction poured over ice and sweetened milk for hot afternoons.", price: "₹185", image: filterImg, vegetarian: true, badge: "New" },
+  // Cold Coffee
   { name: "Cold Brew", category: "cold", description: "Eighteen-hour steeped Ethiopian coffee served over clear ice.", price: "₹265", image: coldbrew, popular: true, vegetarian: true },
   { name: "Iced Latte", category: "cold", description: "Chilled espresso, fresh milk and hand-cut ice.", price: "₹255", image: coldbrew, vegetarian: true },
-  { name: "Mocha Frappe", category: "cold", description: "Whipped chocolate espresso with cream and dark cocoa.", price: "₹325", image: mocha, vegetarian: true },
+  { name: "Mocha Frappe", category: "cold", description: "Whipped chocolate espresso with cream and dark cocoa.", price: "₹325", image: mocha, vegetarian: true, badge: "Premium" },
   { name: "Vanilla Cold Coffee", category: "cold", description: "Creamy cold coffee perfumed with real vanilla bean.", price: "₹295", image: coldbrew, vegetarian: true },
-  { name: "Tiramisu", category: "desserts", description: "Espresso-soaked sponge layered with mascarpone and cocoa.", price: "₹345", image: menuDesserts, popular: true, vegetarian: true },
-  { name: "Chocolate Brownie", category: "desserts", description: "Dark chocolate brownie with a molten centre and sea salt.", price: "₹285", image: menuDesserts, popular: true, vegetarian: true },
+  // Tea
+  { name: "Royal Masala Chai", category: "tea", description: "Assam CTC simmered with ginger, cardamom, clove and fresh milk.", price: "₹125", image: teaImg, popular: true, vegetarian: true, badge: "Best Seller" },
+  { name: "Darjeeling First Flush", category: "tea", description: "Delicate muscatel spring leaf from a single Darjeeling estate.", price: "₹195", image: teaImg, vegetarian: true, badge: "Premium" },
+  { name: "Kashmiri Kahwa", category: "tea", description: "Green tea with saffron, cinnamon and crushed almonds.", price: "₹185", image: teaImg, vegetarian: true },
+  { name: "Lemon Honey Ginger Tea", category: "tea", description: "Bright black tea with wild honey, lemon and fresh ginger.", price: "₹145", image: teaImg, vegetarian: true },
+  // Hot Milk
+  { name: "Kesar Badam Milk", category: "hotmilk", description: "Saffron and almond milk simmered slowly in brass.", price: "₹195", image: hotmilkImg, popular: true, vegetarian: true, badge: "Chef Special" },
+  { name: "Golden Turmeric Latte", category: "hotmilk", description: "Haldi, black pepper and ginger in creamy steamed milk.", price: "₹185", image: hotmilkImg, vegetarian: true },
+  { name: "Belgian Hot Chocolate", category: "hotmilk", description: "54% Belgian chocolate melted into whole milk with a marshmallow crown.", price: "₹245", image: mocha, vegetarian: true, badge: "Premium" },
+  // Milkshakes
+  { name: "Belgian Chocolate Shake", category: "shakes", description: "Dark Belgian chocolate hand-spun with vanilla ice cream.", price: "₹275", image: shakeImg, popular: true, vegetarian: true, badge: "Best Seller" },
+  { name: "Lotus Biscoff Shake", category: "shakes", description: "Caramelised Biscoff crumb blended with cream and milk.", price: "₹295", image: shakeImg, vegetarian: true, badge: "New" },
+  { name: "Alphonso Mango Shake", category: "shakes", description: "Ratnagiri Alphonso pulp with chilled milk and vanilla.", price: "₹265", image: lassiImg, vegetarian: true },
+  { name: "Strawberry Cream Shake", category: "shakes", description: "Mahabaleshwar strawberries spun with cream and vanilla bean.", price: "₹265", image: shakeImg, vegetarian: true },
+  // Mojitos
+  { name: "Classic Mint Mojito", category: "mojitos", description: "Garden mint, lime and cane sugar topped with sparkling water.", price: "₹195", image: mojitoImg, popular: true, vegetarian: true, badge: "Best Seller" },
+  { name: "Blue Lagoon Mojito", category: "mojitos", description: "Blue curaçao syrup, lime and mint over crushed ice.", price: "₹215", image: mojitoImg, vegetarian: true },
+  { name: "Watermelon Basil Mojito", category: "mojitos", description: "Fresh watermelon pressed with basil and a squeeze of lime.", price: "₹225", image: mojitoImg, vegetarian: true, badge: "New" },
+  { name: "Kala Khatta Mojito", category: "mojitos", description: "Tangy black plum syrup with chaat masala and mint.", price: "₹205", image: mojitoImg, vegetarian: true },
+  // Fresh Lassi
+  { name: "Alphonso Mango Lassi", category: "lassi", description: "House-set curd churned with Alphonso mango and saffron.", price: "₹195", image: lassiImg, popular: true, vegetarian: true, badge: "Best Seller" },
+  { name: "Rose Pistachio Lassi", category: "lassi", description: "Gulkand, rose water and slivered pistachio in thick curd.", price: "₹205", image: lassiImg, vegetarian: true, badge: "Chef Special" },
+  { name: "Punjabi Sweet Lassi", category: "lassi", description: "Thick, sweet and topped with a layer of fresh malai.", price: "₹165", image: lassiImg, vegetarian: true },
+  { name: "Masala Chaas", category: "lassi", description: "Spiced buttermilk with roasted cumin, ginger and coriander.", price: "₹125", image: lassiImg, vegetarian: true },
+  // Sandwiches
+  { name: "Grilled Paneer Tikka Sandwich", category: "sandwiches", description: "Tandoori paneer, mint chutney and pickled onion in sourdough.", price: "₹325", image: menuSnacks, popular: true, vegetarian: true, spice: 2, badge: "Best Seller" },
+  { name: "Bombay Masala Toast", category: "sandwiches", description: "Spiced potato, beetroot and green chutney, grilled until crisp.", price: "₹245", image: menuSnacks, vegetarian: true, spice: 2 },
+  { name: "Pesto Mozzarella Melt", category: "sandwiches", description: "Basil pesto, fresh mozzarella and roasted tomatoes on focaccia.", price: "₹345", image: menuSnacks, vegetarian: true, spice: 1, badge: "Premium" },
+  { name: "Club Veg Sandwich", category: "sandwiches", description: "Triple-decker with garden vegetables, cheddar and mustard.", price: "₹295", image: menuSnacks, vegetarian: true, spice: 1 },
+  // Snacks
+  { name: "Peri Peri Fries", category: "snacks", description: "Skin-on fries dusted with smoky peri peri and garlic aioli.", price: "₹225", image: menuSnacks, popular: true, vegetarian: true, spice: 2, badge: "Best Seller" },
+  { name: "Truffle Parmesan Fries", category: "snacks", description: "Crisp fries with truffle oil, parmesan and parsley.", price: "₹295", image: menuSnacks, vegetarian: true, spice: 1, badge: "Premium" },
+  { name: "Cheese Garlic Bread", category: "snacks", description: "Sourdough toasted with confit garlic, herbs and mozzarella.", price: "₹235", image: menuBakery, vegetarian: true, spice: 1 },
+  { name: "Butter Croissant", category: "snacks", description: "A flaky, cultured-butter croissant baked throughout the morning.", price: "₹195", image: menuBakery, vegetarian: true },
+  // Momos
+  { name: "Classic Veg Momos", category: "momos", description: "Hand-folded dumplings with cabbage, carrot and spring onion.", price: "₹195", image: momosImg, popular: true, vegetarian: true, spice: 1, badge: "Best Seller" },
+  { name: "Paneer Cheese Momos", category: "momos", description: "Soft paneer and molten cheese in a silky steamed wrapper.", price: "₹235", image: momosImg, vegetarian: true, spice: 1 },
+  { name: "Tandoori Fried Momos", category: "momos", description: "Crisp-fried momos tossed in smoky tandoori masala.", price: "₹245", image: momosImg, vegetarian: true, spice: 3, badge: "Chef Special" },
+  { name: "Schezwan Pan Momos", category: "momos", description: "Pan-tossed in fiery Schezwan sauce with peppers and sesame.", price: "₹255", image: momosImg, vegetarian: true, spice: 3 },
+  // Corn
+  { name: "Butter Masala Corn", category: "corn", description: "Sweet corn tossed in brown butter, chaat masala and lime.", price: "₹155", image: cornImg, popular: true, vegetarian: true, spice: 1, badge: "Best Seller" },
+  { name: "Crispy Chilli Corn", category: "corn", description: "Golden fried kernels with chilli, garlic and spring onion.", price: "₹215", image: cornImg, vegetarian: true, spice: 2 },
+  { name: "Cheese Corn Cup", category: "corn", description: "Steamed corn folded through a warm three-cheese sauce.", price: "₹185", image: cornImg, vegetarian: true, spice: 1, badge: "New" },
+  // Desserts
+  { name: "Tiramisu", category: "desserts", description: "Espresso-soaked sponge layered with mascarpone and cocoa.", price: "₹345", image: menuDesserts, popular: true, vegetarian: true, badge: "Chef Special" },
+  { name: "Chocolate Brownie", category: "desserts", description: "Dark chocolate brownie with a molten centre and sea salt.", price: "₹285", image: menuDesserts, popular: true, vegetarian: true, badge: "Best Seller" },
   { name: "Cheesecake", category: "desserts", description: "Baked vanilla cheesecake with a seasonal berry compote.", price: "₹325", image: menuDesserts, vegetarian: true },
-  { name: "Chocolate Lava Cake", category: "desserts", description: "Warm cacao cake with a flowing ganache heart.", price: "₹355", image: menuDesserts, vegetarian: true },
-  { name: "Butter Croissant", category: "snacks", description: "A flaky, cultured-butter croissant baked throughout the morning.", price: "₹195", image: menuBakery, popular: true, vegetarian: true, badge: "Best Seller" },
-  { name: "Garlic Bread", category: "snacks", description: "Sourdough toasted with confit garlic and garden herbs.", price: "₹215", image: menuBakery, vegetarian: true, badge: "Chef Special" },
-  { name: "Blueberry Muffin", category: "snacks", description: "Tender vanilla crumb filled with macerated blueberries.", price: "₹185", image: menuBakery, vegetarian: true, badge: "New" },
-  { name: "Chocolate Muffin", category: "snacks", description: "Deep cocoa muffin studded with Belgian chocolate.", price: "₹195", image: menuBakery, vegetarian: true, badge: "Premium" },
-  { name: "Veg Sandwich", category: "snacks", description: "Garden vegetables, cheddar and mustard on toasted sourdough.", price: "₹265", image: menuSnacks, vegetarian: true, spice: 1 },
-  { name: "Grilled Paneer Sandwich", category: "snacks", description: "Tandoori paneer, mint chutney and pickled onion in sourdough.", price: "₹325", image: menuSnacks, popular: true, vegetarian: true, spice: 2 },
-  { name: "French Fries", category: "snacks", description: "Crisp skin-on fries with smoked salt and house aioli.", price: "₹225", image: menuSnacks, vegetarian: true, spice: 1 },
-  { name: "Garlic Toast", category: "snacks", description: "Charred sourdough with roasted garlic butter and parsley.", price: "₹195", image: menuSnacks, vegetarian: true, spice: 1 },
-  { name: "Veg Wrap", category: "snacks", description: "Grilled vegetables, hummus and crisp leaves in a warm flatbread.", price: "₹295", image: menuSnacks, vegetarian: true, spice: 2 },
-] as const).map((product, index) => {
+  { name: "Chocolate Lava Cake", category: "desserts", description: "Warm cacao cake with a flowing ganache heart.", price: "₹355", image: menuDesserts, vegetarian: true, badge: "Premium" },
+  { name: "Blueberry Muffin", category: "desserts", description: "Tender vanilla crumb filled with macerated blueberries.", price: "₹185", image: menuBakery, vegetarian: true, badge: "New" },
+];
+
+export const menuProducts: MenuProduct[] = baseProducts.map((product, index) => {
   const profile = categoryProfiles[product.category];
   const basePrice = Number(product.price.replace(/[^0-9]/g, ""));
-  const isFood = product.category === "desserts" || product.category === "snacks";
   const rating = Number((4.7 + (index % 3) * 0.1).toFixed(1));
 
   return {
@@ -266,10 +401,11 @@ export const menuProducts: MenuProduct[] = ([
     categoryLabel: menuCategories.find((category) => category.id === product.category)?.label ?? "Menu",
     basePrice,
     rating,
+    beverage: profile.beverage,
     ingredients: profile.ingredients,
     roast: profile.roast,
     strength: profile.strength,
-    sizes: isFood ? plateLadder : sizeLadder,
+    sizes: profile.beverage ? sizeLadder : plateLadder,
     story: `${product.name} began as a staff experiment behind the Bean Haven bar and stayed on the menu by popular demand. ${product.description} Every serve is built to order, weighed to the gram and finished by hand so the last mouthful tastes like the first.`,
     brewing: profile.brewing,
     flavorNotes: profile.flavorNotes,
@@ -280,7 +416,7 @@ export const menuProducts: MenuProduct[] = ([
       ...review,
       rating: reviewIndex === 3 ? 4 : 5,
     })).slice(0, 3 + (index % 2)),
-  } satisfies MenuProduct;
+  };
 });
 
 export const findMenuProduct = (slug: string) =>

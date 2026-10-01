@@ -216,7 +216,7 @@ function ProductPage() {
               </DetailRow>
             </Reveal>
             <Reveal delay={120}>
-              <DetailRow icon={Thermometer} label="Brewing method">
+              <DetailRow icon={Thermometer} label={product.beverage ? "Brewing method" : "Preparation"}>
                 {product.brewing}
               </DetailRow>
             </Reveal>
