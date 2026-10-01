@@ -130,24 +130,7 @@ export function MenuSection() {
         <p className="mt-16 text-center font-menu-display text-xl italic text-menu-gold">Ethically sourced. Composed with care. Made fresh for every order.</p>
       </div>
 
-      {quickView ? (
-        <div role="dialog" aria-modal="true" aria-label={`${quickView.name} details`} className="fixed inset-0 z-[80] grid place-items-center bg-menu-noir/90 p-4 backdrop-blur-md" onClick={() => setQuickView(null)}>
-          <article className="relative grid w-full max-w-3xl overflow-hidden rounded-lg border border-menu-gold/35 bg-menu-paper shadow-menu-luxe sm:grid-cols-2" onClick={(event) => event.stopPropagation()}>
-            <img src={quickView.image} alt={quickView.name} width={800} height={800} className="aspect-square size-full object-cover" />
-            <div className="flex flex-col justify-center p-8 sm:p-10">
-              <Button variant="ghost" size="icon" aria-label="Close quick view" className="absolute right-3 top-3" onClick={() => setQuickView(null)}><X /></Button>
-              <span className="menu-kicker">Barista selection</span>
-              <h3 className="mt-4 font-menu-display text-4xl text-menu-ink">{quickView.name}</h3>
-              <p className="mt-4 text-sm leading-7 text-menu-muted">{quickView.description}</p>
-              <div className="mt-6 flex items-center justify-between border-t border-menu-gold/25 pt-5">
-                <span className="font-menu-display text-3xl italic text-menu-gold">{quickView.price}</span>
-                <span className="flex items-center gap-1 text-sm text-menu-gold"><Star className="size-4 fill-current" /> {quickView.rating.toFixed(1)}</span>
-              </div>
-              <Button variant="gold" className="mt-7" onClick={() => toast.success(`${quickView.name} added to your order`)}><Plus /> Order Now</Button>
-            </div>
-          </article>
-        </div>
-      ) : null}
+      {quickView ? <MenuQuickView product={quickView} onClose={() => setQuickView(null)} /> : null}
     </section>
   );
 }
