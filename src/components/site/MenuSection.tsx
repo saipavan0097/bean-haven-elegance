@@ -32,6 +32,7 @@ function ProductDetails({ product }: { product: MenuProduct }) {
         <span className="shrink-0 font-menu-display text-2xl italic text-menu-gold">{product.price}</span>
       </div>
       <h3 className="mt-5 font-menu-display text-3xl leading-none text-menu-ink">{product.name}</h3>
+      <span className="mt-2 block text-[0.62rem] uppercase tracking-[0.2em] text-menu-muted">{product.categoryLabel}</span>
       <div className="mt-3 flex items-center gap-2 text-xs text-menu-muted" aria-label={`${product.rating} out of 5 stars`}>
         <span className="flex gap-0.5 text-menu-gold">
           {Array.from({ length: 5 }).map((_, index) => <Star key={index} className="size-3 fill-current" />)}
