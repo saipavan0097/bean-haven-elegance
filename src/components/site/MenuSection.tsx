@@ -1,9 +1,11 @@
 import { useMemo, useState } from "react";
-import { Bean, CakeSlice, ChefHat, Coffee, Eye, Milk, Plus, Sandwich, ShoppingBag, Snowflake, Sparkles, Star, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, Bean, CakeSlice, ChefHat, Coffee, Eye, Milk, Plus, Sandwich, Snowflake, Sparkles, Star } from "lucide-react";
 import { toast } from "sonner";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { MenuQuickView } from "./MenuQuickView";
 import {
   menuCategories,
   menuProducts,
