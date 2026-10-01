@@ -58,7 +58,9 @@ function EditorialCard({ product, index, onQuickView }: { product: MenuProduct; 
           <ProductDetails product={product} />
           <div className="mt-auto flex flex-wrap gap-2 pt-6">
             <Button variant="outlineGold" size="sm" onClick={() => onQuickView(product)}><Eye /> Quick View</Button>
-            <Button variant="gold" size="sm" onClick={() => toast.success(`${product.name} added to your order`)}><ShoppingBag /> Order Now</Button>
+            <Button asChild variant="gold" size="sm">
+              <Link to="/menu/$slug" params={{ slug: product.slug }}>View Details <ArrowRight /></Link>
+            </Button>
           </div>
         </div>
       </article>
