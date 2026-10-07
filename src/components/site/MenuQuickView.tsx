@@ -92,16 +92,16 @@ export function MenuQuickView({
               <dt className="min-w-24 text-menu-muted">Ingredients</dt>
               <dd className="flex-1 text-menu-ink">{product.ingredients.join(" · ")}</dd>
             </div>
-            <div className="flex flex-wrap gap-x-3">
+            {product.beverage ? <div className="flex flex-wrap gap-x-3">
               <dt className="min-w-24 text-menu-muted">Roast level</dt>
               <dd className="flex-1 text-menu-ink">{product.roast}</dd>
-            </div>
-            <div className="flex flex-wrap items-center gap-x-3">
+            </div> : null}
+            {product.beverage ? <div className="flex flex-wrap items-center gap-x-3">
               <dt className="min-w-24 text-menu-muted">Strength</dt>
               <dd className="flex-1">
                 <StrengthMeter value={product.strength} />
               </dd>
-            </div>
+            </div> : null}
           </dl>
 
           <div className="mt-6">

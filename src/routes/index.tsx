@@ -13,6 +13,7 @@ import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { FeaturedDrinks } from "@/components/site/FeaturedDrinks";
 import { LoadingScreen } from "@/components/site/LoadingScreen";
+import { BrandStory } from "@/components/site/BrandStory";
 
 const title = "Bean Haven — Small-Batch Coffee Roastery & Lounge";
 const description =
@@ -79,6 +80,7 @@ function Index() {
       <main>
         <Hero />
         <About />
+        <BrandStory />
         <MenuSection />
         <FeaturedDrinks />
         <Offers />

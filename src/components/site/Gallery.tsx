@@ -103,6 +103,7 @@ export function Gallery() {
               className="max-h-[78vh] w-full rounded-3xl object-contain"
             />
             <figcaption className="mt-4 text-center text-sm text-cream/70">
+              <span className="mb-1 block text-xs uppercase tracking-[0.16em] text-gold">{current.category}</span>
               {current.alt}
             </figcaption>
           </figure>

@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, Bean, CakeSlice, ChefHat, Coffee, Eye, Milk, Plus, Sandwich, Snowflake, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Bean, CakeSlice, ChefHat, Coffee, Cookie, Citrus, Eye, GlassWater, Leaf, Milk, Plus, Sandwich, Snowflake, Soup, Sparkles, Star, Wheat, CupSoda } from "lucide-react";
 import { toast } from "sonner";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/ui/button";
@@ -16,10 +16,18 @@ import {
 const categoryIcons = {
   coffee: Coffee,
   bean: Bean,
+  filter: Coffee,
+  leaf: Leaf,
   milk: Milk,
   snowflake: Snowflake,
   cake: CakeSlice,
   sandwich: Sandwich,
+  cookie: Cookie,
+  soup: Soup,
+  wheat: Wheat,
+  citrus: Citrus,
+  glass: GlassWater,
+  shake: CupSoda,
 };
 
 function ProductDetails({ product }: { product: MenuProduct }) {

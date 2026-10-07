@@ -17,6 +17,15 @@ import p4 from "@/assets/person-4.jpg";
 import menuDesserts from "@/assets/menu-desserts.jpg";
 import menuBakery from "@/assets/menu-bakery.jpg";
 import menuSnacks from "@/assets/menu-snacks.jpg";
+import filterImg from "@/assets/menu-filter.jpg";
+import teaImg from "@/assets/menu-tea.jpg";
+import hotmilkImg from "@/assets/menu-hotmilk.jpg";
+import shakeImg from "@/assets/menu-shake.jpg";
+import mojitoImg from "@/assets/menu-mojito.jpg";
+import lassiImg from "@/assets/menu-lassi.jpg";
+import momosImg from "@/assets/menu-momos.jpg";
+import cornImg from "@/assets/menu-corn.jpg";
+import founderImg from "@/assets/founder.jpg";
 
 export const navLinks = [
   { label: "Home", href: "#home" },
@@ -447,12 +456,15 @@ export const offers = [
 ];
 
 export const gallery = [
-  { src: g1, alt: "Freshly roasted coffee beans spilling from a burlap sack" },
-  { src: g2, alt: "Velvet armchairs in a warm corner of the Bean Haven lounge" },
-  { src: g3, alt: "Golden croissants served beside a cup of coffee" },
-  { src: g4, alt: "Brass espresso machine group head extracting coffee" },
-  { src: g5, alt: "Guests laughing together around a cafe table" },
-  { src: g6, alt: "Bean Haven storefront glowing warmly at dusk" },
+  { src: g1, category: "Coffee", alt: "Freshly roasted coffee beans spilling from a burlap sack" },
+  { src: g2, category: "Seating", alt: "Velvet armchairs in a warm corner of the Bean Haven lounge" },
+  { src: menuDesserts, category: "Desserts", alt: "Chocolate dessert from the Bean Haven pastry kitchen" },
+  { src: g4, category: "Brewing", alt: "Brass espresso machine group head extracting coffee" },
+  { src: g5, category: "Lifestyle", alt: "Guests sharing a relaxed moment around a cafe table" },
+  { src: g6, category: "Interior", alt: "Bean Haven storefront glowing warmly at dusk" },
+  { src: founderImg, category: "Barista", alt: "Illustrative founder portrait placeholder in the Bean Haven café" },
+  { src: filterImg, category: "Coffee", alt: "South Indian filter coffee served in a traditional brass tumbler" },
+  { src: g3, category: "Desserts", alt: "Golden croissants served beside a cup of coffee" },
 ];
 
 export const testimonials = [
@@ -460,7 +472,8 @@ export const testimonials = [
     name: "Amelia Hartwell",
     role: "Architect",
     avatar: p1,
-    rating: 5,
+    rating: 4.9,
+    date: "June 2026",
     quote:
       "The flat white here ruined every other cafe for me. It arrives at exactly the right temperature, every single time, and the room feels like a private library.",
   },
@@ -468,7 +481,8 @@ export const testimonials = [
     name: "Marcus Lindqvist",
     role: "Food Writer",
     avatar: p2,
-    rating: 5,
+    rating: 4.8,
+    date: "May 2026",
     quote:
       "I've reviewed sixty roasteries this year. Bean Haven is the only one where the baristas could talk me through the farm, the altitude and the drying method without a note.",
   },
@@ -477,6 +491,7 @@ export const testimonials = [
     role: "Product Designer",
     avatar: p3,
     rating: 5,
+    date: "April 2026",
     quote:
       "My whole team works from the back banquette on Thursdays. Fast Wi-Fi, real power outlets, and a cold brew that carries you straight through the afternoon.",
   },
@@ -484,7 +499,8 @@ export const testimonials = [
     name: "Daniel Okafor",
     role: "Musician",
     avatar: p4,
-    rating: 5,
+    rating: 4.9,
+    date: "March 2026",
     quote:
       "It's the small things — warm cups, brass details, jazz kept just below conversation level. I booked a table for my album listening night and they made it feel like an event.",
   },
