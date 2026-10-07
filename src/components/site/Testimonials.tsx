@@ -58,10 +58,13 @@ export function Testimonials() {
                       <p className="text-cream">{t.name}</p>
                       <p className="text-sm text-cream/60">{t.role} · {t.date}</p>
                     </div>
-                    <div className="ml-auto flex gap-1" aria-label={`${t.rating} out of 5 stars`}>
+                    <div className="ml-auto flex items-center gap-2" aria-label={`${t.rating.toFixed(1)} out of 5 stars`}>
+                      <span className="text-sm font-medium text-cream">{t.rating.toFixed(1)}</span>
+                      <span className="flex gap-1" aria-hidden="true">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star key={i} className="size-4 fill-gold text-gold" aria-hidden />
                       ))}
+                      </span>
                       <span className="sr-only">Rated {t.rating.toFixed(1)} out of 5</span>
                     </div>
                   </figcaption>

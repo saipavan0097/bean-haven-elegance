@@ -549,6 +549,18 @@ export const faqs = [
     a: "We rotate three single origins — Ethiopian Guji, Colombian Huila and Sumatran Gayo — alongside our year-round Haven house blend. Every bag is roasted on site.",
   },
   {
+    q: "Where does Bean Haven source its coffee?",
+    a: "Our menu highlights traceable lots selected for their character and the care behind each harvest. Ask our baristas what is currently on the grinder for origin and tasting details.",
+  },
+  {
+    q: "How is the coffee roasted and brewed?",
+    a: "We roast in small batches and prepare each drink to order. Our baristas adjust the grind and extraction to suit the coffee, then finish each cup by hand.",
+  },
+  {
+    q: "What does Bean Haven do to reduce waste?",
+    a: "We plan around seasonal ingredients, use reusable serviceware for dine-in guests and work closely with suppliers to make thoughtful use of each delivery.",
+  },
+  {
     q: "Do you offer dairy-free and vegan options?",
     a: "Yes. Oat, almond, soy and coconut milks are available at no extra charge, and our pastry case always includes at least three vegan bakes.",
   },

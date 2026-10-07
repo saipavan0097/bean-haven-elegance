@@ -60,7 +60,7 @@ export function BrandStory() {
               That idea grew into a roastery and lounge shaped by curiosity, hospitality and care. From choosing expressive beans to remembering a familiar order, we still measure our work by the moments people carry with them when they leave.
             </p>
             <div className="mt-9 border-l border-gold/60 pl-5 font-display text-2xl italic leading-snug text-cream sm:text-3xl">
-              “Make every cup feel like an invitation to stay a little longer.”
+              Every cup is an invitation to stay a little longer.
             </div>
           </Reveal>
         </div>
