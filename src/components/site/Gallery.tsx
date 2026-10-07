@@ -4,15 +4,21 @@ import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { gallery } from "./data";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export function Gallery() {
   const [index, setIndex] = useState<number | null>(null);
-  const current = index === null ? null : gallery[index];
+  const [activeCategory, setActiveCategory] = useState("All");
+  const categories = ["All", ...new Set(gallery.map((image) => image.category))];
+  const visibleGallery = activeCategory === "All"
+    ? gallery
+    : gallery.filter((image) => image.category === activeCategory);
+  const current = index === null ? null : visibleGallery[index];
 
   const close = useCallback(() => setIndex(null), []);
   const step = useCallback(
-    (dir: number) => setIndex((i) => (i === null ? i : (i + dir + gallery.length) % gallery.length)),
-    [],
+    (dir: number) => setIndex((i) => (i === null ? i : (i + dir + visibleGallery.length) % visibleGallery.length)),
+    [visibleGallery.length],
   );
 
   useEffect(() => {
@@ -40,8 +46,32 @@ export function Gallery() {
           description="Brass, walnut and steam — a look at the room, the roast and the people who fill both."
         />
 
+        <div className="mt-10 flex flex-wrap justify-center gap-2" aria-label="Gallery categories">
+          {categories.map((category) => (
+            <Button
+              key={category}
+              type="button"
+              variant="ghost"
+              size="sm"
+              aria-pressed={activeCategory === category}
+              onClick={() => {
+                setActiveCategory(category);
+                setIndex(null);
+              }}
+              className={cn(
+                "rounded-full border px-4",
+                activeCategory === category
+                  ? "border-gold bg-gold/15 text-espresso"
+                  : "border-border text-muted-foreground",
+              )}
+            >
+              {category}
+            </Button>
+          ))}
+        </div>
+
         <ul className="mt-16 columns-2 gap-4 sm:gap-6 lg:columns-3">
-          {gallery.map((img, i) => (
+          {visibleGallery.map((img, i) => (
             <Reveal as="li" key={img.alt} delay={i * 70} className="mb-4 break-inside-avoid sm:mb-6">
               <button
                 type="button"
@@ -103,6 +133,7 @@ export function Gallery() {
               className="max-h-[78vh] w-full rounded-3xl object-contain"
             />
             <figcaption className="mt-4 text-center text-sm text-cream/70">
+              <span className="mb-1 block text-xs uppercase tracking-[0.16em] text-gold">{current.category}</span>
               {current.alt}
             </figcaption>
           </figure>

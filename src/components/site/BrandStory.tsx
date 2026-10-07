@@ -36,14 +36,14 @@ export function BrandStory() {
             <div className="absolute -bottom-4 -right-4 hidden h-2/3 w-2/3 rounded-[2rem] border border-gold/40 sm:block" aria-hidden="true" />
             <img
               src={founderPortrait}
-              alt="Portrait representing Bean Haven founder Sai Pavan Rali"
+              alt="Illustrative café founder portrait placeholder, ready to be replaced with Sai Pavan Rali's portrait"
               width={1024}
               height={1280}
               loading="lazy"
               className="relative aspect-[4/5] w-full rounded-[2rem] object-cover shadow-lift"
             />
             <span className="absolute bottom-5 left-5 rounded-full border border-cream/20 bg-espresso/75 px-4 py-2 text-xs text-cream backdrop-blur-md">
-              Bean Haven · Since 2008
+              Founder portrait placeholder · Replace anytime
             </span>
           </Reveal>
 
@@ -60,7 +60,7 @@ export function BrandStory() {
               That idea grew into a roastery and lounge shaped by curiosity, hospitality and care. From choosing expressive beans to remembering a familiar order, we still measure our work by the moments people carry with them when they leave.
             </p>
             <div className="mt-9 border-l border-gold/60 pl-5 font-display text-2xl italic leading-snug text-cream sm:text-3xl">
-              “Make every cup feel like an invitation to stay a little longer.”
+              Every cup is an invitation to stay a little longer.
             </div>
           </Reveal>
         </div>
