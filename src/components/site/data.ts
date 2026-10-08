@@ -322,6 +322,65 @@ const plateLadder: MenuSize[] = [
   { label: "Large", volume: "Sharing plate", delta: 60 },
 ];
 
+const productIngredients: Record<string, string[]> = {
+  "Bean Haven Signature": ["Haven espresso", "Jaggery caramel", "Velvet cream", "Cocoa"],
+  "Classic Cappuccino": ["Double espresso", "Whole milk", "Microfoam"],
+  "Caramel Latte": ["Double ristretto", "Burnt caramel", "Steamed milk"],
+  "Vanilla Latte": ["House espresso", "Madagascar vanilla", "Whole milk"],
+  "Hazelnut Latte": ["Double espresso", "Hazelnut praline", "Steamed milk"],
+  Espresso: ["Fresh-ground Arabica", "Filtered water"],
+  Americano: ["Double espresso", "Soft filtered water"],
+  "Flat White": ["Double ristretto", "Whole milk microfoam"],
+  "Café Mocha": ["Single-origin espresso", "Belgian cocoa", "Steamed milk"],
+  "Kumbakonam Degree Coffee": ["Chikmagalur coffee", "Roasted chicory", "Fresh cow's milk"],
+  "Mylapore Jaggery Filter": ["Coffee-chicory decoction", "Palm jaggery", "Milk"],
+  "Malnad Black Filter": ["Malnad coffee", "Chicory", "Cardamom"],
+  "Iced Filter Kaapi": ["Filter coffee decoction", "Fresh milk", "Hand-cut ice"],
+  "Cold Brew": ["Ethiopian coffee", "Cold filtered water", "Ice"],
+  "Iced Latte": ["Espresso", "Fresh milk", "Hand-cut ice"],
+  "Mocha Frappe": ["Espresso", "Dark chocolate", "Cream", "Ice"],
+  "Vanilla Cold Coffee": ["Cold coffee", "Vanilla bean", "Fresh cream"],
+  "Royal Masala Chai": ["Assam tea", "Ginger", "Cardamom", "Fresh milk"],
+  "Darjeeling First Flush": ["Darjeeling whole-leaf tea", "Filtered water"],
+  "Kashmiri Kahwa": ["Green tea", "Saffron", "Cinnamon", "Almonds"],
+  "Lemon Honey Ginger Tea": ["Black tea", "Wild honey", "Lemon", "Ginger"],
+  "Kesar Badam Milk": ["Whole milk", "Kashmiri saffron", "Almonds"],
+  "Golden Turmeric Latte": ["Steamed milk", "Turmeric", "Black pepper", "Ginger"],
+  "Belgian Hot Chocolate": ["Belgian chocolate", "Whole milk", "Marshmallow"],
+  "Belgian Chocolate Shake": ["Belgian chocolate", "Vanilla ice cream", "Fresh milk"],
+  "Lotus Biscoff Shake": ["Biscoff crumb", "Vanilla ice cream", "Cream"],
+  "Alphonso Mango Shake": ["Ratnagiri Alphonso mango", "Chilled milk", "Vanilla"],
+  "Strawberry Cream Shake": ["Mahabaleshwar strawberries", "Fresh cream", "Vanilla bean"],
+  "Classic Mint Mojito": ["Garden mint", "Fresh lime", "Cane sugar", "Sparkling water"],
+  "Blue Lagoon Mojito": ["Blue citrus syrup", "Fresh lime", "Mint", "Soda"],
+  "Watermelon Basil Mojito": ["Fresh watermelon", "Basil", "Lime", "Sparkling water"],
+  "Kala Khatta Mojito": ["Black plum syrup", "Mint", "Lime", "Chaat masala"],
+  "Alphonso Mango Lassi": ["House-set curd", "Alphonso mango", "Saffron"],
+  "Rose Pistachio Lassi": ["House-set curd", "Gulkand", "Rose water", "Pistachio"],
+  "Punjabi Sweet Lassi": ["House-set curd", "Fresh malai", "Cane sugar"],
+  "Masala Chaas": ["Cultured buttermilk", "Roasted cumin", "Ginger", "Coriander"],
+  "Grilled Paneer Tikka Sandwich": ["Tandoori paneer", "Mint chutney", "Pickled onion", "Sourdough"],
+  "Bombay Masala Toast": ["Spiced potato", "Beetroot", "Green chutney", "Bread"],
+  "Pesto Mozzarella Melt": ["Basil pesto", "Mozzarella", "Roasted tomatoes", "Focaccia"],
+  "Club Veg Sandwich": ["Garden vegetables", "Cheddar", "Mustard", "Sourdough"],
+  "Peri Peri Fries": ["Skin-on potatoes", "Peri peri spice", "Garlic aioli"],
+  "Truffle Parmesan Fries": ["Skin-on potatoes", "Truffle oil", "Parmesan", "Parsley"],
+  "Cheese Garlic Bread": ["Sourdough", "Confit garlic", "Mozzarella", "Garden herbs"],
+  "Butter Croissant": ["Cultured butter", "French flour", "Free-range eggs"],
+  "Classic Veg Momos": ["Wheat wrappers", "Cabbage", "Carrot", "Spring onion"],
+  "Paneer Cheese Momos": ["Wheat wrappers", "Fresh paneer", "Melted cheese"],
+  "Tandoori Fried Momos": ["Wheat wrappers", "Vegetable filling", "Tandoori spice"],
+  "Schezwan Pan Momos": ["Wheat wrappers", "Schezwan sauce", "Peppers", "Sesame"],
+  "Butter Masala Corn": ["Sweet corn", "Brown butter", "Chaat masala", "Lime"],
+  "Crispy Chilli Corn": ["Sweet corn", "Chilli", "Garlic", "Spring onion"],
+  "Cheese Corn Cup": ["Sweet corn", "Cheddar", "Mozzarella", "Cream"],
+  Tiramisu: ["Espresso", "Mascarpone", "Sponge", "Cocoa"],
+  "Chocolate Brownie": ["Dark chocolate", "Cultured butter", "Free-range eggs", "Sea salt"],
+  Cheesecake: ["Cream cheese", "Vanilla", "Cultured cream", "Seasonal berries"],
+  "Chocolate Lava Cake": ["Dark cocoa", "Belgian chocolate", "Butter", "Free-range eggs"],
+  "Blueberry Muffin": ["Blueberries", "Vanilla", "Cultured butter", "Wheat flour"],
+};
+
 const slugify = (value: string) =>
   value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
@@ -402,7 +461,7 @@ const baseProducts: BaseProduct[] = [
 export const menuProducts: MenuProduct[] = baseProducts.map((product, index) => {
   const profile = categoryProfiles[product.category];
   const basePrice = Number(product.price.replace(/[^0-9]/g, ""));
-  const rating = Number((4.7 + (index % 3) * 0.1).toFixed(1));
+  const rating = Number((4.8 + (index % 3) * 0.1).toFixed(1));
 
   return {
     ...product,
@@ -411,7 +470,7 @@ export const menuProducts: MenuProduct[] = baseProducts.map((product, index) => 
     basePrice,
     rating,
     beverage: profile.beverage,
-    ingredients: profile.ingredients,
+    ingredients: productIngredients[product.name] ?? profile.ingredients,
     roast: profile.roast,
     strength: profile.strength,
     sizes: profile.beverage ? sizeLadder : plateLadder,
@@ -423,7 +482,7 @@ export const menuProducts: MenuProduct[] = baseProducts.map((product, index) => 
     pairing: profile.pairing,
     reviews: reviewPool.map((review, reviewIndex) => ({
       ...review,
-      rating: reviewIndex === 3 ? 4 : 5,
+      rating: reviewIndex === 0 ? 5 : reviewIndex === 3 ? 4.8 : 4.9,
     })).slice(0, 3 + (index % 2)),
   };
 });

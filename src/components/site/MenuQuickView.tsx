@@ -4,7 +4,7 @@ import { ArrowRight, Flame, Leaf, ShoppingBag, Star, X } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { MenuProduct } from "./data";
+import type { MenuProduct, MenuSize } from "./data";
 
 export function StrengthMeter({ value, tone = "light" }: { value: number; tone?: "light" | "dark" }) {
   return (
@@ -33,7 +33,7 @@ export function MenuQuickView({
   product: MenuProduct;
   onClose: () => void;
 }) {
-  const fallback = product.sizes[1] ?? product.sizes[0]!;
+  const fallback: MenuSize = product.sizes[1] ?? product.sizes[0] ?? { label: "Medium", volume: "240 ml", delta: 0 };
   const [size, setSize] = useState(fallback.label);
   const active = product.sizes.find((option) => option.label === size) ?? fallback;
   const price = product.basePrice + active.delta;
