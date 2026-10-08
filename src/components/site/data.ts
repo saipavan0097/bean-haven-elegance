@@ -303,6 +303,22 @@ const categoryProfiles: Record<MenuCategory, CategoryProfile> = {
   },
 };
 
+const categoryStoryRoots: Record<MenuCategory, string> = {
+  signature: "our house coffee ritual, where expressive espresso meets thoughtful balance.",
+  filter: "South Indian coffee-house traditions, brewed slowly and served with their familiar theatre.",
+  cold: "the slower side of coffee, built around a cool extraction and a clean, lingering finish.",
+  tea: "a quiet tea ritual, with carefully chosen leaves and spice brought gently into focus.",
+  hotmilk: "the comfort of a slow-simmered cup, layered with warming spice and gentle sweetness.",
+  shakes: "a generous café classic, spun to order with carefully paired flavours and a creamy finish.",
+  mojitos: "a bright zero-proof pour, balancing freshly pressed citrus, garden herbs and sparkle.",
+  lassi: "a fresh, house-set curd tradition, churned by hand with seasonal fruit and aromatic accents.",
+  sandwiches: "a kitchen-made lunch, built with considered fillings and bread toasted to order.",
+  snacks: "a warm café-side favourite, prepared fresh and seasoned for a satisfying, savoury finish.",
+  momos: "a hand-folded kitchen favourite, shaped fresh and served with a lively house accompaniment.",
+  corn: "a simple seasonal snack, brought to life with warm butter, bright spice and fresh finishing touches.",
+  desserts: "our pastry counter, where familiar comforts meet careful technique and a polished finish.",
+};
+
 const reviewPool: Omit<MenuReview, "rating">[] = [
   { name: "Ananya Sharma", date: "March 2026", comment: "Genuinely the most considered cup in the city — it tastes exactly the same every visit." },
   { name: "Marcus Lindqvist", date: "February 2026", comment: "Beautifully balanced and served at the right temperature. The presentation alone is worth the price." },
@@ -474,7 +490,7 @@ export const menuProducts: MenuProduct[] = baseProducts.map((product, index) => 
     roast: profile.roast,
     strength: profile.strength,
     sizes: profile.beverage ? sizeLadder : plateLadder,
-    story: `${product.name} began as a staff experiment behind the Bean Haven bar and stayed on the menu by popular demand. ${product.description} Every serve is built to order, weighed to the gram and finished by hand so the last mouthful tastes like the first.`,
+    story: `${product.name} is part of ${categoryStoryRoots[product.category]} ${product.description} Prepared to order and finished by hand, it brings the character of its ingredients to the table in every serve.`,
     brewing: profile.brewing,
     flavorNotes: profile.flavorNotes,
     calories: profile.calories,
