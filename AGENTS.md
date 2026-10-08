@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep substantial brand narratives in a dedicated site section module imported by the home route, so brand storytelling remains cohesive without reshaping existing page sections.

@@ -303,6 +303,22 @@ const categoryProfiles: Record<MenuCategory, CategoryProfile> = {
   },
 };
 
+const categoryStoryRoots: Record<MenuCategory, string> = {
+  signature: "our house coffee ritual, where expressive espresso meets thoughtful balance.",
+  filter: "South Indian coffee-house traditions, brewed slowly and served with their familiar theatre.",
+  cold: "the slower side of coffee, built around a cool extraction and a clean, lingering finish.",
+  tea: "a quiet tea ritual, with carefully chosen leaves and spice brought gently into focus.",
+  hotmilk: "the comfort of a slow-simmered cup, layered with warming spice and gentle sweetness.",
+  shakes: "a generous café classic, spun to order with carefully paired flavours and a creamy finish.",
+  mojitos: "a bright zero-proof pour, balancing freshly pressed citrus, garden herbs and sparkle.",
+  lassi: "a fresh, house-set curd tradition, churned by hand with seasonal fruit and aromatic accents.",
+  sandwiches: "a kitchen-made lunch, built with considered fillings and bread toasted to order.",
+  snacks: "a warm café-side favourite, prepared fresh and seasoned for a satisfying, savoury finish.",
+  momos: "a hand-folded kitchen favourite, shaped fresh and served with a lively house accompaniment.",
+  corn: "a simple seasonal snack, brought to life with warm butter, bright spice and fresh finishing touches.",
+  desserts: "our pastry counter, where familiar comforts meet careful technique and a polished finish.",
+};
+
 const reviewPool: Omit<MenuReview, "rating">[] = [
   { name: "Ananya Sharma", date: "March 2026", comment: "Genuinely the most considered cup in the city — it tastes exactly the same every visit." },
   { name: "Marcus Lindqvist", date: "February 2026", comment: "Beautifully balanced and served at the right temperature. The presentation alone is worth the price." },
@@ -321,6 +337,65 @@ const plateLadder: MenuSize[] = [
   { label: "Medium", volume: "Regular plate", delta: 0 },
   { label: "Large", volume: "Sharing plate", delta: 60 },
 ];
+
+const productIngredients: Record<string, string[]> = {
+  "Bean Haven Signature": ["Haven espresso", "Jaggery caramel", "Velvet cream", "Cocoa"],
+  "Classic Cappuccino": ["Double espresso", "Whole milk", "Microfoam"],
+  "Caramel Latte": ["Double ristretto", "Burnt caramel", "Steamed milk"],
+  "Vanilla Latte": ["House espresso", "Madagascar vanilla", "Whole milk"],
+  "Hazelnut Latte": ["Double espresso", "Hazelnut praline", "Steamed milk"],
+  Espresso: ["Fresh-ground Arabica", "Filtered water"],
+  Americano: ["Double espresso", "Soft filtered water"],
+  "Flat White": ["Double ristretto", "Whole milk microfoam"],
+  "Café Mocha": ["Single-origin espresso", "Belgian cocoa", "Steamed milk"],
+  "Kumbakonam Degree Coffee": ["Chikmagalur coffee", "Roasted chicory", "Fresh cow's milk"],
+  "Mylapore Jaggery Filter": ["Coffee-chicory decoction", "Palm jaggery", "Milk"],
+  "Malnad Black Filter": ["Malnad coffee", "Chicory", "Cardamom"],
+  "Iced Filter Kaapi": ["Filter coffee decoction", "Fresh milk", "Hand-cut ice"],
+  "Cold Brew": ["Ethiopian coffee", "Cold filtered water", "Ice"],
+  "Iced Latte": ["Espresso", "Fresh milk", "Hand-cut ice"],
+  "Mocha Frappe": ["Espresso", "Dark chocolate", "Cream", "Ice"],
+  "Vanilla Cold Coffee": ["Cold coffee", "Vanilla bean", "Fresh cream"],
+  "Royal Masala Chai": ["Assam tea", "Ginger", "Cardamom", "Fresh milk"],
+  "Darjeeling First Flush": ["Darjeeling whole-leaf tea", "Filtered water"],
+  "Kashmiri Kahwa": ["Green tea", "Saffron", "Cinnamon", "Almonds"],
+  "Lemon Honey Ginger Tea": ["Black tea", "Wild honey", "Lemon", "Ginger"],
+  "Kesar Badam Milk": ["Whole milk", "Kashmiri saffron", "Almonds"],
+  "Golden Turmeric Latte": ["Steamed milk", "Turmeric", "Black pepper", "Ginger"],
+  "Belgian Hot Chocolate": ["Belgian chocolate", "Whole milk", "Marshmallow"],
+  "Belgian Chocolate Shake": ["Belgian chocolate", "Vanilla ice cream", "Fresh milk"],
+  "Lotus Biscoff Shake": ["Biscoff crumb", "Vanilla ice cream", "Cream"],
+  "Alphonso Mango Shake": ["Ratnagiri Alphonso mango", "Chilled milk", "Vanilla"],
+  "Strawberry Cream Shake": ["Mahabaleshwar strawberries", "Fresh cream", "Vanilla bean"],
+  "Classic Mint Mojito": ["Garden mint", "Fresh lime", "Cane sugar", "Sparkling water"],
+  "Blue Lagoon Mojito": ["Blue citrus syrup", "Fresh lime", "Mint", "Soda"],
+  "Watermelon Basil Mojito": ["Fresh watermelon", "Basil", "Lime", "Sparkling water"],
+  "Kala Khatta Mojito": ["Black plum syrup", "Mint", "Lime", "Chaat masala"],
+  "Alphonso Mango Lassi": ["House-set curd", "Alphonso mango", "Saffron"],
+  "Rose Pistachio Lassi": ["House-set curd", "Gulkand", "Rose water", "Pistachio"],
+  "Punjabi Sweet Lassi": ["House-set curd", "Fresh malai", "Cane sugar"],
+  "Masala Chaas": ["Cultured buttermilk", "Roasted cumin", "Ginger", "Coriander"],
+  "Grilled Paneer Tikka Sandwich": ["Tandoori paneer", "Mint chutney", "Pickled onion", "Sourdough"],
+  "Bombay Masala Toast": ["Spiced potato", "Beetroot", "Green chutney", "Bread"],
+  "Pesto Mozzarella Melt": ["Basil pesto", "Mozzarella", "Roasted tomatoes", "Focaccia"],
+  "Club Veg Sandwich": ["Garden vegetables", "Cheddar", "Mustard", "Sourdough"],
+  "Peri Peri Fries": ["Skin-on potatoes", "Peri peri spice", "Garlic aioli"],
+  "Truffle Parmesan Fries": ["Skin-on potatoes", "Truffle oil", "Parmesan", "Parsley"],
+  "Cheese Garlic Bread": ["Sourdough", "Confit garlic", "Mozzarella", "Garden herbs"],
+  "Butter Croissant": ["Cultured butter", "French flour", "Free-range eggs"],
+  "Classic Veg Momos": ["Wheat wrappers", "Cabbage", "Carrot", "Spring onion"],
+  "Paneer Cheese Momos": ["Wheat wrappers", "Fresh paneer", "Melted cheese"],
+  "Tandoori Fried Momos": ["Wheat wrappers", "Vegetable filling", "Tandoori spice"],
+  "Schezwan Pan Momos": ["Wheat wrappers", "Schezwan sauce", "Peppers", "Sesame"],
+  "Butter Masala Corn": ["Sweet corn", "Brown butter", "Chaat masala", "Lime"],
+  "Crispy Chilli Corn": ["Sweet corn", "Chilli", "Garlic", "Spring onion"],
+  "Cheese Corn Cup": ["Sweet corn", "Cheddar", "Mozzarella", "Cream"],
+  Tiramisu: ["Espresso", "Mascarpone", "Sponge", "Cocoa"],
+  "Chocolate Brownie": ["Dark chocolate", "Cultured butter", "Free-range eggs", "Sea salt"],
+  Cheesecake: ["Cream cheese", "Vanilla", "Cultured cream", "Seasonal berries"],
+  "Chocolate Lava Cake": ["Dark cocoa", "Belgian chocolate", "Butter", "Free-range eggs"],
+  "Blueberry Muffin": ["Blueberries", "Vanilla", "Cultured butter", "Wheat flour"],
+};
 
 const slugify = (value: string) =>
   value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -402,7 +477,7 @@ const baseProducts: BaseProduct[] = [
 export const menuProducts: MenuProduct[] = baseProducts.map((product, index) => {
   const profile = categoryProfiles[product.category];
   const basePrice = Number(product.price.replace(/[^0-9]/g, ""));
-  const rating = Number((4.7 + (index % 3) * 0.1).toFixed(1));
+  const rating = Number((4.8 + (index % 3) * 0.1).toFixed(1));
 
   return {
     ...product,
@@ -411,11 +486,11 @@ export const menuProducts: MenuProduct[] = baseProducts.map((product, index) => 
     basePrice,
     rating,
     beverage: profile.beverage,
-    ingredients: profile.ingredients,
+    ingredients: productIngredients[product.name] ?? profile.ingredients,
     roast: profile.roast,
     strength: profile.strength,
     sizes: profile.beverage ? sizeLadder : plateLadder,
-    story: `${product.name} began as a staff experiment behind the Bean Haven bar and stayed on the menu by popular demand. ${product.description} Every serve is built to order, weighed to the gram and finished by hand so the last mouthful tastes like the first.`,
+    story: `${product.name} is part of ${categoryStoryRoots[product.category]} ${product.description} Prepared to order and finished by hand, it brings the character of its ingredients to the table in every serve.`,
     brewing: profile.brewing,
     flavorNotes: profile.flavorNotes,
     calories: profile.calories,
@@ -423,7 +498,7 @@ export const menuProducts: MenuProduct[] = baseProducts.map((product, index) => 
     pairing: profile.pairing,
     reviews: reviewPool.map((review, reviewIndex) => ({
       ...review,
-      rating: reviewIndex === 3 ? 4 : 5,
+      rating: reviewIndex === 0 ? 5 : reviewIndex === 3 ? 4.8 : 4.9,
     })).slice(0, 3 + (index % 2)),
   };
 });

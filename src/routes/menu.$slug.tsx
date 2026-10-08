@@ -17,7 +17,7 @@ import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/site/Footer";
 import { StrengthMeter } from "@/components/site/MenuQuickView";
-import { findMenuProduct, menuProducts } from "@/components/site/data";
+import { findMenuProduct, menuProducts, type MenuSize } from "@/components/site/data";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/menu/$slug")({
@@ -88,7 +88,7 @@ function DetailRow({
 
 function ProductPage() {
   const { product } = Route.useLoaderData();
-  const fallback = product.sizes[1] ?? product.sizes[0]!;
+  const fallback: MenuSize = product.sizes[1] ?? product.sizes[0] ?? { label: "Medium", volume: "240 ml", delta: 0 };
   const [size, setSize] = useState(fallback.label);
   const active = product.sizes.find((option) => option.label === size) ?? fallback;
   const price = product.basePrice + active.delta;
