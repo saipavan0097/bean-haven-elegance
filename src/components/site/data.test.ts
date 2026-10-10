@@ -1,30 +1,21 @@
-import { describe, expect, it } from "bun:test";
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
 import { menuCategories, menuProducts, testimonials } from "./data";
 
+const expectedCategories = [
+  "Signature Coffee", "South Indian Filter Coffee", "Cold Coffee", "Tea", "Hot Milk",
+  "Milkshakes", "Mojitos", "Fresh Lassi", "Sandwiches", "Snacks", "Momos", "Corn", "Desserts",
+];
 describe("Phase 4 café menu", () => {
-  it("includes all 13 requested café categories", () => {
-    expect(menuCategories.map((category) => category.label)).toEqual([
-      "Signature Coffee",
-      "South Indian Filter Coffee",
-      "Cold Coffee",
-      "Tea",
-      "Hot Milk",
-      "Milkshakes",
-      "Mojitos",
-      "Fresh Lassi",
-      "Sandwiches",
-      "Snacks",
-      "Momos",
-      "Corn",
-      "Desserts",
-    ]);
+  it("includes all requested categories", () => {
+    assert.deepEqual(menuCategories.map((category) => category.label), expectedCategories);
   });
 
-  it("has at least one complete product in every category", () => {
+  it("provides complete, rated products in every category", () => {
     for (const category of menuCategories) {
       const products = menuProducts.filter((product) => product.category === category.id);
-      expect(products.length).toBeGreaterThan(0);
-      expect(products.every((product) =>
+      assert.ok(products.length > 0, `${category.label} must contain at least one menu item.`);
+      assert.ok(products.every((product) =>
         product.ingredients.length > 0 &&
         product.image.length > 0 &&
         product.story.length > 0 &&
@@ -34,17 +25,17 @@ describe("Phase 4 café menu", () => {
         product.price.startsWith("₹") &&
         product.rating >= 4.8 &&
         product.rating <= 5
-      )).toBe(true);
+      ), `${category.label} products must have complete content, rupee pricing and 4.8–5.0 ratings.`);
     }
   });
 
-  it("gives every listed product a distinct detail-page slug", () => {
+  it("gives every menu item a unique details page", () => {
     const slugs = menuProducts.map((product) => product.slug);
-    expect(new Set(slugs).size).toBe(menuProducts.length);
+    assert.equal(new Set(slugs).size, menuProducts.length);
   });
 
-  it("keeps guest testimonial ratings within 4.8–5.0", () => {
-    expect(testimonials.length).toBeGreaterThan(0);
-    expect(testimonials.every((review) => review.rating >= 4.8 && review.rating <= 5)).toBe(true);
+  it("keeps all guest-review ratings between 4.8 and 5.0", () => {
+    assert.ok(testimonials.length > 0);
+    assert.ok(testimonials.every((review) => review.rating >= 4.8 && review.rating <= 5));
   });
 });

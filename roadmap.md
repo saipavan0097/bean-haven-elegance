@@ -9,7 +9,7 @@
 
 # Phase 4
 
-- [ ] Expand the interactive menu across all requested categories and complete product details
-- [ ] Add founder, philosophy, coffee journey, craft, sourcing, and sustainability content
-- [ ] Extend customer reviews and gallery coverage while preserving existing sections
-- [ ] Verify desktop/mobile layout, menu interactions, and page health
+- [x] Expand the interactive menu across all requested categories and complete product details
+- [x] Add founder, philosophy, coffee journey, craft, sourcing, and sustainability content
+- [x] Extend customer reviews and gallery coverage while preserving existing sections
+- [x] Verify desktop/mobile layout, menu interactions, and page health
