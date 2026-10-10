@@ -24,8 +24,23 @@ describe("Phase 4 café menu", () => {
     for (const category of menuCategories) {
       const products = menuProducts.filter((product) => product.category === category.id);
       expect(products.length).toBeGreaterThan(0);
-      expect(products.every((product) => product.ingredients.length > 0 && product.image.length > 0)).toBe(true);
+      expect(products.every((product) =>
+        product.ingredients.length > 0 &&
+        product.image.length > 0 &&
+        product.story.length > 0 &&
+        product.brewing.length > 0 &&
+        product.flavorNotes.length > 0 &&
+        product.calories > 0 &&
+        product.price.startsWith("₹") &&
+        product.rating >= 4.8 &&
+        product.rating <= 5
+      )).toBe(true);
     }
+  });
+
+  it("gives every listed product a distinct detail-page slug", () => {
+    const slugs = menuProducts.map((product) => product.slug);
+    expect(new Set(slugs).size).toBe(menuProducts.length);
   });
 
   it("keeps guest testimonial ratings within 4.8–5.0", () => {
